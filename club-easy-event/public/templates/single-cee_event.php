@@ -12,7 +12,8 @@ get_header();
 		$event_id     = get_the_ID();
 		$event_date   = get_post_meta( $event_id, '_cee_event_date', true );
 		$event_time   = get_post_meta( $event_id, '_cee_event_time', true );
-		$event_type   = get_post_meta( $event_id, '_cee_event_type', true );
+                $event_type   = get_post_meta( $event_id, '_cee_event_type', true );
+                $event_type_label = CEE_Meta::get_event_type_label( $event_type );
 		$home_team_id = absint( get_post_meta( $event_id, '_cee_home_team_id', true ) );
 		$away_team    = get_post_meta( $event_id, '_cee_away_team_id', true );
 		$venue_id     = absint( get_post_meta( $event_id, '_cee_venue_id', true ) );
@@ -34,9 +35,9 @@ get_header();
 		<article id="post-<?php the_ID(); ?>" <?php post_class( 'cee-event-article' ); ?>>
 			<header class="entry-header">
 				<h1 class="entry-title"><?php the_title(); ?></h1>
-				<?php if ( $event_type ) : ?>
-					<p class="cee-event-type-label"><?php echo esc_html( $event_type ); ?></p>
-				<?php endif; ?>
+                                <?php if ( $event_type_label ) : ?>
+                                        <p class="cee-event-type-label"><?php echo esc_html( $event_type_label ); ?></p>
+                                <?php endif; ?>
 			</header>
 			<div class="cee-event-meta">
 				<?php if ( $event_date ) : ?>
@@ -52,9 +53,15 @@ get_header();
 					$away_team_name = is_numeric( $away_team ) ? get_the_title( absint( $away_team ) ) : $away_team;
 				}
 				?>
-				<?php if ( $home_team_name || $away_team_name ) : ?>
-					<p><strong><?php esc_html_e( 'Affiche', 'club-easy-event' ); ?>:</strong> <?php echo esc_html( trim( $home_team_name . ( $away_team_name ? ' vs ' . $away_team_name : '' ) ) ); ?></p>
-				<?php endif; ?>
+                                <?php if ( $home_team_name || $away_team_name ) :
+                                        $versus_label = esc_html__( 'vs', 'club-easy-event' );
+                                        $matchup      = $home_team_name ? $home_team_name : '';
+                                        if ( $away_team_name ) {
+                                                $matchup = $matchup ? $matchup . ' ' . $versus_label . ' ' . $away_team_name : $away_team_name;
+                                        }
+                                        ?>
+                                        <p><strong><?php esc_html_e( 'Affiche', 'club-easy-event' ); ?>:</strong> <?php echo esc_html( $matchup ); ?></p>
+                                <?php endif; ?>
 				<?php if ( '' !== $home_score || '' !== $away_score ) : ?>
 					<p><strong><?php esc_html_e( 'Score', 'club-easy-event' ); ?>:</strong> <?php echo esc_html( $home_score . ' - ' . $away_score ); ?></p>
 				<?php endif; ?>

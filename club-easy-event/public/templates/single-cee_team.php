@@ -57,9 +57,12 @@ get_header();
 				<section class="cee-team-upcoming">
 					<h2><?php esc_html_e( 'Prochains événements', 'club-easy-event' ); ?></h2>
 					<ul>
-						<?php while ( $upcoming->have_posts() ) : $upcoming->the_post(); ?>
-							<li><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a> — <?php echo esc_html( get_post_meta( get_the_ID(), '_cee_event_date', true ) ); ?></li>
-						<?php endwhile; ?>
+                                                <?php while ( $upcoming->have_posts() ) : $upcoming->the_post();
+                                                        $upcoming_date = get_post_meta( get_the_ID(), '_cee_event_date', true );
+                                                        $formatted_date = $upcoming_date ? date_i18n( get_option( 'date_format' ), strtotime( $upcoming_date ) ) : '';
+                                                        ?>
+                                                        <li><a href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a><?php if ( $formatted_date ) : ?> — <?php echo esc_html( $formatted_date ); ?><?php endif; ?></li>
+                                                <?php endwhile; ?>
 					</ul>
 				</section>
 			<?php endif; ?>

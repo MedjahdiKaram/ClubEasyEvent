@@ -28,6 +28,7 @@ define( 'CEE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 require_once CEE_PLUGIN_DIR . 'includes/class-cee-activator.php';
 require_once CEE_PLUGIN_DIR . 'includes/class-cee-deactivator.php';
+require_once CEE_PLUGIN_DIR . 'includes/class-cee-i18n.php';
 require_once CEE_PLUGIN_DIR . 'includes/class-cee-plugin.php';
 
 register_activation_hook( __FILE__, array( 'CEE_Activator', 'activate' ) );

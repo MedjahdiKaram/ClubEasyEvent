@@ -134,7 +134,8 @@ class CEE_Shortcodes {
 		$event_id    = get_the_ID();
 		$event_date  = get_post_meta( $event_id, '_cee_event_date', true );
 		$event_time  = get_post_meta( $event_id, '_cee_event_time', true );
-		$event_type  = get_post_meta( $event_id, '_cee_event_type', true );
+                $event_type  = get_post_meta( $event_id, '_cee_event_type', true );
+                $event_type_label = CEE_Meta::get_event_type_label( $event_type );
 		$home_team   = absint( get_post_meta( $event_id, '_cee_home_team_id', true ) );
 		$away_team   = get_post_meta( $event_id, '_cee_away_team_id', true );
 		$venue_id    = absint( get_post_meta( $event_id, '_cee_venue_id', true ) );
@@ -153,9 +154,9 @@ class CEE_Shortcodes {
 		<li class="cee-schedule-item">
 		<div class="cee-schedule-header">
 		<a class="cee-schedule-event-title" href="<?php echo esc_url( get_permalink() ); ?>"><?php the_title(); ?></a>
-		<?php if ( $event_type ) : ?>
-		<span class="cee-event-type"><?php echo esc_html( $event_type ); ?></span>
-		<?php endif; ?>
+                <?php if ( $event_type_label ) : ?>
+                <span class="cee-event-type"><?php echo esc_html( $event_type_label ); ?></span>
+                <?php endif; ?>
 		</div>
 		<div class="cee-schedule-meta">
 		<span class="cee-event-date"><?php echo esc_html( $this->format_date( $event_date ) ); ?></span>
@@ -169,9 +170,9 @@ class CEE_Shortcodes {
 		if ( $home_name ) {
 		echo esc_html( $home_name );
 		}
-		if ( $away_team_name ) {
-		echo ' ' . esc_html__( 'vs', 'club-easy-event' ) . ' ' . esc_html( $away_team_name );
-		}
+                if ( $away_team_name ) {
+                echo ' ' . esc_html__( 'vs', 'club-easy-event' ) . ' ' . esc_html( $away_team_name );
+                }
 		?>
 		</div>
 		<?php if ( $venue_id ) : ?>

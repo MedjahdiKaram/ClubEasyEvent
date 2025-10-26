@@ -44,7 +44,9 @@ class CEE_Meta {
 		$away_score      = get_post_meta( $post->ID, '_cee_away_score', true );
 		$teams           = $this->get_posts_for_select( 'cee_team' );
 		$venues          = $this->get_posts_for_select( 'cee_venue' );
-
+		$event_types     = self::get_event_types();
+		$event_type_key  = self::get_event_type_key( $event_type );
+		
 		include CEE_PLUGIN_DIR . 'admin/views/meta-event.php';
 	}
 
@@ -109,19 +111,15 @@ class CEE_Meta {
 			return;
 		}
 
-		$allowed_types = array( 'Match', 'Entraînement', 'Événement social' );
-
 		$event_date = isset( $_POST['cee_event_date'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_event_date'] ) ) : '';
 		update_post_meta( $post_id, '_cee_event_date', $event_date );
 
 		$event_time = isset( $_POST['cee_event_time'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_event_time'] ) ) : '';
 		update_post_meta( $post_id, '_cee_event_time', $event_time );
 
-		$event_type = isset( $_POST['cee_event_type'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_event_type'] ) ) : '';
-		if ( ! in_array( $event_type, $allowed_types, true ) ) {
-			$event_type = '';
-		}
-		update_post_meta( $post_id, '_cee_event_type', $event_type );
+		$event_type_input = isset( $_POST['cee_event_type'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_event_type'] ) ) : '';
+		$event_type_key   = self::get_event_type_key( $event_type_input );
+		update_post_meta( $post_id, '_cee_event_type', $event_type_key );
 
 		$home_team_id = isset( $_POST['cee_home_team_id'] ) ? absint( $_POST['cee_home_team_id'] ) : 0;
 		update_post_meta( $post_id, '_cee_home_team_id', $home_team_id );
@@ -382,4 +380,93 @@ class CEE_Meta {
 
 		return $data;
 	}
+
+	/**
+	 * Retrieve available event types.
+	 *
+	 * @return array
+	 */
+	public static function get_event_types() {
+		return array(
+			'match'    => __( 'Match', 'club-easy-event' ),
+			'training' => __( 'Entraînement', 'club-easy-event' ),
+			'social'   => __( 'Événement social', 'club-easy-event' ),
+		);
+	}
+
+	/**
+	 * Determine the canonical event type key from stored value.
+	 *
+	 * @param string $value Stored value.
+	 *
+	 * @return string
+	 */
+	public static function get_event_type_key( $value ) {
+		if ( '' === $value ) {
+			return '';
+		}
+
+		$types  = self::get_event_types();
+		$value  = (string) $value;
+		$legacy = self::get_legacy_event_type_map();
+
+		if ( isset( $types[ $value ] ) ) {
+			return $value;
+		}
+
+		if ( isset( $legacy[ $value ] ) ) {
+			return $legacy[ $value ];
+		}
+
+		$key = array_search( $value, $types, true );
+		if ( false !== $key ) {
+			return $key;
+		}
+
+		return '';
+	}
+
+	/**
+	 * Get the display label for an event type value.
+	 *
+	 * @param string $value Stored value.
+	 *
+	 * @return string
+	 */
+	public static function get_event_type_label( $value ) {
+		if ( '' === $value ) {
+			return '';
+		}
+
+		$types  = self::get_event_types();
+		$legacy = self::get_legacy_event_type_map();
+
+		if ( isset( $types[ $value ] ) ) {
+			return $types[ $value ];
+		}
+
+		if ( isset( $legacy[ $value ] ) && isset( $types[ $legacy[ $value ] ] ) ) {
+			return $types[ $legacy[ $value ] ];
+		}
+
+		if ( in_array( $value, $types, true ) ) {
+			return $value;
+		}
+
+		return $value;
+	}
+
+	/**
+	 * Legacy map for event type values stored before slug usage.
+	 *
+	 * @return array
+	 */
+	private static function get_legacy_event_type_map() {
+		return array(
+			'Match'             => 'match',
+			'Entraînement'      => 'training',
+			'Événement social' => 'social',
+		);
+	}
+
 }
