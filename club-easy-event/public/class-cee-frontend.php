@@ -66,6 +66,9 @@ class CEE_Frontend {
 
 		wp_register_style( $style_handle, CEE_PLUGIN_URL . 'assets/css/public.css', array(), $this->version );
 		wp_register_script( $script_handle, CEE_PLUGIN_URL . 'assets/js/public.js', array( 'jquery' ), $this->version, true );
+		if ( function_exists( 'wp_set_script_translations' ) ) {
+			wp_set_script_translations( $script_handle, 'club-easy-event', dirname( plugin_basename( CEE_PLUGIN_FILE ) ) . '/languages' );
+		}
 
 		if ( ! $this->should_enqueue ) {
 			global $post;
@@ -98,6 +101,7 @@ class CEE_Frontend {
 				'i18n'     => array(
 					'success' => __( 'Merci pour votre réponse!', 'club-easy-event' ),
 					'error'   => __( 'Une erreur est survenue. Veuillez réessayer.', 'club-easy-event' ),
+					'loading' => __( 'Traitement…', 'club-easy-event' ),
 				),
 			)
 		);

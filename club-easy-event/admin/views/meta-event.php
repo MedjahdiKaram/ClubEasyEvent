@@ -17,17 +17,17 @@
 <?php wp_nonce_field( 'cee_event_meta', 'cee_event_meta_nonce' ); ?>
 <p>
 <label for="cee_event_date"><strong><?php esc_html_e( 'Date', 'club-easy-event' ); ?></strong></label>
-<input type="text" id="cee_event_date" name="cee_event_date" class="cee-date-field regular-text" value="<?php echo esc_attr( $event_date ); ?>" placeholder="YYYY-MM-DD" />
+<input type="text" id="cee_event_date" name="cee_event_date" class="cee-date-field regular-text" value="<?php echo esc_attr( $event_date ); ?>" placeholder="<?php echo esc_attr__( 'YYYY-MM-DD', 'club-easy-event' ); ?>" />
 </p>
 <p>
 <label for="cee_event_time"><strong><?php esc_html_e( 'Heure', 'club-easy-event' ); ?></strong></label>
-<input type="text" id="cee_event_time" name="cee_event_time" class="cee-time-field regular-text" value="<?php echo esc_attr( $event_time ); ?>" placeholder="HH:MM" />
+<input type="text" id="cee_event_time" name="cee_event_time" class="cee-time-field regular-text" value="<?php echo esc_attr( $event_time ); ?>" placeholder="<?php echo esc_attr__( 'HH:MM', 'club-easy-event' ); ?>" />
 </p>
 <p>
 <label for="cee_event_type"><strong><?php esc_html_e( 'Type d’événement', 'club-easy-event' ); ?></strong></label>
 <select id="cee_event_type" name="cee_event_type" class="widefat">
-<?php foreach ( array( 'Match', 'Entraînement', 'Événement social' ) as $type ) : ?>
-<option value="<?php echo esc_attr( $type ); ?>" <?php selected( $event_type, $type ); ?>><?php echo esc_html( $type ); ?></option>
+<?php foreach ( $event_types as $type_key => $type_label ) : ?>
+<option value="<?php echo esc_attr( $type_key ); ?>" <?php selected( $event_type_key, $type_key ); ?>><?php echo esc_html( $type_label ); ?></option>
 <?php endforeach; ?>
 </select>
 </p>

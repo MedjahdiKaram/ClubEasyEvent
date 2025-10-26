@@ -112,12 +112,19 @@ class CEE_Plugin {
 	 */
 	protected $frontend;
 
-	/**
-	 * Admin UI manager.
-	 *
-	 * @var CEE_Admin
-	 */
-	protected $admin;
+/**
+ * Admin UI manager.
+ *
+ * @var CEE_Admin
+ */
+protected $admin;
+
+/**
+ * Internationalization helper.
+ *
+ * @var CEE_I18n
+ */
+protected $i18n;
 
 	/**
 	 * Constructor.
@@ -163,6 +170,7 @@ class CEE_Plugin {
 		$this->cron         = new CEE_Cron();
 		$this->roles        = new CEE_Roles();
 		$this->admin        = new CEE_Admin( $this->settings, $this->admin_columns );
+		$this->i18n         = new CEE_I18n();
 	}
 
 	/**
@@ -171,16 +179,9 @@ class CEE_Plugin {
 	 * @return void
 	 */
 	private function set_locale() {
-		$this->loader->add_action( 'plugins_loaded', $this, 'load_textdomain' );
-	}
-
-	/**
-	 * Load plugin translations.
-	 *
-	 * @return void
-	 */
-	public function load_textdomain() {
-		load_plugin_textdomain( 'club-easy-event', false, dirname( plugin_basename( CEE_PLUGIN_FILE ) ) . '/languages/' );
+		$this->loader->add_action( 'plugins_loaded', $this->i18n, 'load_textdomain' );
+		$this->loader->add_action( 'init', CEE_I18n::class, 'maybe_switch_locale', 1 );
+		$this->loader->add_action( 'shutdown', CEE_I18n::class, 'restore_locale' );
 	}
 
 	/**
