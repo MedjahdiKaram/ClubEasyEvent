@@ -1,0 +1,109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Club Easy Event 1.0.0\n"
+"POT-Creation-Date: 2024-01-01 00:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: GPT\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: club-easy-event.php:18
+msgid "Le plugin le plus simple pour gérer les événements, les équipes et les membres de votre club sportif directement dans WordPress."
+msgstr ""
+
+#: includes/class-cee-admin.php:45
+msgid "Club Easy Event"
+msgstr ""
+
+#: includes/class-cee-admin.php:65
+msgid "Événements"
+msgstr ""
+
+#: includes/class-cee-admin.php:73
+msgid "Équipes"
+msgstr ""
+
+#: includes/class-cee-admin.php:81
+msgid "Paramètres"
+msgstr ""
+
+#: includes/class-cee-settings.php:47
+msgid "Rappels par e-mail"
+msgstr ""
+
+#: includes/class-cee-settings.php:48
+msgid "Modèle d’e-mail"
+msgstr ""
+
+#: includes/class-cee-settings.php:53
+msgid "Style"
+msgstr ""
+
+#: includes/class-cee-settings.php:54
+msgid "Couleur principale (hex)"
+msgstr ""
+
+#: includes/class-cee-shortcodes.php:83
+msgid "Aucun événement à afficher."
+msgstr ""
+
+#: includes/class-cee-shortcodes.php:146
+msgid "Itinéraire"
+msgstr ""
+
+#: includes/class-cee-shortcodes.php:156
+msgid "Présent"
+msgstr ""
+
+#: includes/class-cee-shortcodes.php:156
+msgid "Incertain"
+msgstr ""
+
+#: includes/class-cee-shortcodes.php:156
+msgid "Absent"
+msgstr ""
+
+#: includes/class-cee-shortcodes.php:222
+msgid "Aucun joueur enregistré."
+msgstr ""
+
+#: includes/class-cee-ajax.php:26
+msgid "Nonce invalide."
+msgstr ""
+
+#: includes/class-cee-ajax.php:30
+msgid "Vous devez être connecté pour répondre."
+msgstr ""
+
+#: includes/class-cee-ajax.php:34
+msgid "Permissions insuffisantes."
+msgstr ""
+
+#: includes/class-cee-ajax.php:38
+msgid "Données incorrectes."
+msgstr ""
+
+#: includes/class-cee-ajax.php:42
+msgid "Événement introuvable."
+msgstr ""
+
+#: includes/class-cee-ajax.php:50
+msgid "Votre réponse a bien été enregistrée."
+msgstr ""
+
+#: includes/class-cee-cron.php:111
+msgid "Rappel: %s"
+msgstr ""
+
+#: admin/views/settings-page.php:5
+msgid "Paramètres Club Easy Event"
+msgstr ""
+
+#: admin/class-cee-admin.php:109
+msgid "Bienvenue dans Club Easy Event"
+msgstr ""
+
+#: admin/class-cee-admin.php:110
+msgid "Utilisez le menu pour gérer vos événements, équipes, joueurs et lieux. Configurez les rappels par e-mail et la couleur principale dans les paramètres."
+msgstr ""

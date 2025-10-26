@@ -1,0 +1,149 @@
+:root {
+--cee-primary: #0d6efd;
+}
+
+.cee-schedule-wrapper,
+.cee-roster-wrapper {
+margin: 2rem auto;
+max-width: 800px;
+font-family: inherit;
+}
+
+.cee-schedule-title {
+color: var(--cee-primary);
+margin-bottom: 1rem;
+}
+
+.cee-schedule-list,
+.cee-roster-list {
+list-style: none;
+margin: 0;
+padding: 0;
+display: grid;
+gap: 1rem;
+}
+
+.cee-schedule-item,
+.cee-roster-player {
+border: 1px solid rgba(0, 0, 0, 0.08);
+border-radius: 8px;
+padding: 1rem;
+background: #fff;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cee-schedule-header {
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+gap: 0.5rem;
+margin-bottom: 0.5rem;
+}
+
+.cee-schedule-event-title {
+font-weight: 600;
+color: var(--cee-primary);
+text-decoration: none;
+}
+
+.cee-schedule-event-title:hover,
+.cee-schedule-event-title:focus {
+text-decoration: underline;
+}
+
+.cee-event-type {
+background: var(--cee-primary);
+color: #fff;
+border-radius: 999px;
+padding: 0.1rem 0.75rem;
+font-size: 0.75rem;
+}
+
+.cee-event-matchup {
+font-size: 1rem;
+font-weight: 600;
+}
+
+.cee-event-venue,
+.cee-schedule-meta {
+font-size: 0.875rem;
+color: #444;
+}
+
+.cee-event-rsvp {
+display: flex;
+flex-wrap: wrap;
+gap: 0.5rem;
+margin-top: 0.75rem;
+}
+
+.cee-event-rsvp .button.is-active {
+background: var(--cee-primary);
+border-color: var(--cee-primary);
+color: #fff;
+}
+
+.cee-rsvp-status {
+font-size: 0.875rem;
+align-self: center;
+color: var(--cee-primary);
+}
+
+.cee-roster-player {
+display: flex;
+gap: 1rem;
+align-items: center;
+}
+
+.cee-roster-photo img {
+border-radius: 50%;
+width: 64px;
+height: 64px;
+object-fit: cover;
+}
+
+.cee-placeholder-avatar {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 64px;
+height: 64px;
+border-radius: 50%;
+background: rgba(0, 0, 0, 0.05);
+color: rgba(0, 0, 0, 0.5);
+font-size: 0.75rem;
+text-align: center;
+}
+
+.cee-roster-info {
+display: flex;
+flex-direction: column;
+gap: 0.25rem;
+}
+
+.cee-player-number {
+font-weight: 600;
+}
+
+.cee-player-paid {
+color: var(--cee-primary);
+font-weight: 700;
+}
+
+@media (max-width: 600px) {
+.cee-roster-player,
+.cee-schedule-item {
+padding: 0.75rem;
+}
+
+.cee-roster-player {
+flex-direction: column;
+align-items: flex-start;
+}
+
+.cee-roster-photo img,
+.cee-placeholder-avatar {
+width: 48px;
+height: 48px;
+}
+}
