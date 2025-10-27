@@ -44,10 +44,11 @@ class CEE_Shortcodes {
 	 *
 	 * @return void
 	 */
-	public function register_shortcodes() {
-		add_shortcode( 'cee_schedule', array( $this, 'render_schedule' ) );
-		add_shortcode( 'cee_roster', array( $this, 'render_roster' ) );
-	}
+        public function register_shortcodes() {
+                add_shortcode( 'cee_schedule', array( $this, 'render_schedule' ) );
+                add_shortcode( 'cee_roster', array( $this, 'render_roster' ) );
+                add_shortcode( 'cee_event', array( $this, 'render_event' ) );
+        }
 
 	/**
 	 * Render schedule shortcode.
@@ -56,7 +57,7 @@ class CEE_Shortcodes {
 	 *
 	 * @return string
 	 */
-	public function render_schedule( $atts ) {
+        public function render_schedule( $atts ) {
 		$atts = shortcode_atts(
 			array(
 				'team_id'   => '',
@@ -71,9 +72,9 @@ class CEE_Shortcodes {
 
 		if ( ! $team_id ) {
 			return '';
-		}
+        }
 
-		$this->frontend->mark_assets_needed();
+                $this->frontend->mark_assets_needed();
 
 		$meta_query = array(
 			'relation' => 'OR',
@@ -214,15 +215,115 @@ class CEE_Shortcodes {
 		</ul>
 		</div>
 		<?php
-		wp_reset_postdata();
-		return ob_get_clean();
-	}
+                wp_reset_postdata();
+                return ob_get_clean();
+        }
 
-	/**
-	 * Render roster shortcode.
-	 *
-	 * @param array $atts Attributes.
-	 *
+        /**
+         * Render single event card shortcode.
+         *
+         * @param array $atts Shortcode attributes.
+         *
+         * @return string
+         */
+        public function render_event( $atts ) {
+                $atts = shortcode_atts(
+                        array(
+                                'id' => 0,
+                        ),
+                        $atts,
+                        'cee_event'
+                );
+
+                $event_id = absint( $atts['id'] );
+                if ( ! $event_id ) {
+                        return '';
+                }
+
+                $event = get_post( $event_id );
+                if ( ! $event || 'cee_event' !== $event->post_type || 'publish' !== $event->post_status ) {
+                        return '';
+                }
+
+                $this->frontend->mark_assets_needed();
+
+                $event_date      = get_post_meta( $event_id, '_cee_event_date', true );
+                $event_time      = get_post_meta( $event_id, '_cee_event_time', true );
+                $event_type      = get_post_meta( $event_id, '_cee_event_type', true );
+                $event_type_label = CEE_Meta::get_event_type_label( $event_type );
+                $home_team       = absint( get_post_meta( $event_id, '_cee_home_team_id', true ) );
+                $away_team       = get_post_meta( $event_id, '_cee_away_team_id', true );
+                $venue_id        = absint( get_post_meta( $event_id, '_cee_venue_id', true ) );
+                $home_score      = get_post_meta( $event_id, '_cee_home_score', true );
+                $away_score      = get_post_meta( $event_id, '_cee_away_score', true );
+
+                $home_team_name = $home_team ? get_the_title( $home_team ) : '';
+                $away_team_name = '';
+                if ( $away_team ) {
+                        $away_team_name = is_numeric( $away_team ) ? get_the_title( absint( $away_team ) ) : $away_team;
+                }
+
+                $venue_title = $venue_id ? get_the_title( $venue_id ) : '';
+                $venue_addr  = $venue_id ? get_post_meta( $venue_id, '_cee_venue_address', true ) : '';
+                $venue_link  = $venue_id ? get_post_meta( $venue_id, '_cee_venue_map_link', true ) : '';
+
+                $output = '<div class="cee-event-card cee-schedule-item">';
+                $output .= '<div class="cee-schedule-header">';
+                $output .= '<a class="cee-schedule-event-title" href="' . esc_url( get_permalink( $event_id ) ) . '">' . esc_html( get_the_title( $event_id ) ) . '</a>';
+                if ( $event_type_label ) {
+                        $output .= '<span class="cee-event-type">' . esc_html( $event_type_label ) . '</span>';
+                }
+                $output .= '</div>';
+
+                if ( $event_date || $event_time ) {
+                        $output .= '<div class="cee-schedule-meta">';
+                        if ( $event_date ) {
+                                $output .= '<span class="cee-event-date">' . esc_html( date_i18n( get_option( 'date_format' ), strtotime( $event_date ) ) ) . '</span>';
+                        }
+                        if ( $event_time ) {
+                                $output .= '<span class="cee-event-time">' . esc_html( $event_time ) . '</span>';
+                        }
+                        $output .= '</div>';
+                }
+
+                if ( $home_team_name || $away_team_name ) {
+                        $matchup = $home_team_name ? $home_team_name : '';
+                        if ( $away_team_name ) {
+                                $separator = ' ' . esc_html__( 'vs', 'club-easy-event' ) . ' ';
+                                $matchup   = $matchup ? $matchup . $separator . $away_team_name : $away_team_name;
+                        }
+                        $output .= '<div class="cee-event-matchup">' . esc_html( $matchup ) . '</div>';
+                }
+
+                if ( '' !== $home_score || '' !== $away_score ) {
+                        $output .= '<div class="cee-event-score">' . esc_html( $home_score . ' - ' . $away_score ) . '</div>';
+                }
+
+                if ( $venue_title ) {
+                        $output .= '<div class="cee-event-venue">' . esc_html( $venue_title );
+                        if ( $venue_addr ) {
+                                $output .= ' — ' . esc_html( $venue_addr );
+                        }
+                        if ( $venue_link ) {
+                                $output .= ' <a href="' . esc_url( $venue_link ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Itinéraire', 'club-easy-event' ) . '</a>';
+                        }
+                        $output .= '</div>';
+                }
+
+                $output .= '<div class="cee-event-actions">';
+                $output .= '<a class="button" href="' . esc_url( get_permalink( $event_id ) ) . '">' . esc_html__( 'Voir les détails', 'club-easy-event' ) . '</a>';
+                $output .= '</div>';
+
+                $output .= '</div>';
+
+                return apply_filters( 'cee_event_shortcode_output', $output, $event_id, $atts );
+        }
+
+        /**
+         * Render roster shortcode.
+         *
+         * @param array $atts Attributes.
+         *
 	 * @return string
 	 */
 	public function render_roster( $atts ) {

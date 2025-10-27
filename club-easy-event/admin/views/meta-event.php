@@ -17,11 +17,13 @@
 <?php wp_nonce_field( 'cee_event_meta', 'cee_event_meta_nonce' ); ?>
 <p>
 <label for="cee_event_date"><strong><?php esc_html_e( 'Date', 'club-easy-event' ); ?></strong></label>
-<input type="text" id="cee_event_date" name="cee_event_date" class="cee-date-field regular-text" value="<?php echo esc_attr( $event_date ); ?>" placeholder="<?php echo esc_attr__( 'YYYY-MM-DD', 'club-easy-event' ); ?>" />
+<input type="date" id="cee_event_date" name="cee_event_date" class="cee-date-field regular-text" value="<?php echo esc_attr( $event_date ); ?>" aria-describedby="cee-event-date-help" />
+<span id="cee-event-date-help" class="cee-datetime-hint"><?php esc_html_e( 'Format attendu : 2025-10-26', 'club-easy-event' ); ?></span>
 </p>
 <p>
 <label for="cee_event_time"><strong><?php esc_html_e( 'Heure', 'club-easy-event' ); ?></strong></label>
-<input type="text" id="cee_event_time" name="cee_event_time" class="cee-time-field regular-text" value="<?php echo esc_attr( $event_time ); ?>" placeholder="<?php echo esc_attr__( 'HH:MM', 'club-easy-event' ); ?>" />
+<input type="time" id="cee_event_time" name="cee_event_time" class="cee-time-field regular-text" value="<?php echo esc_attr( $event_time ); ?>" aria-describedby="cee-event-time-help" />
+<span id="cee-event-time-help" class="cee-datetime-hint"><?php esc_html_e( 'Format attendu : 14:30', 'club-easy-event' ); ?></span>
 </p>
 <p>
 <label for="cee_event_type"><strong><?php esc_html_e( 'Type d’événement', 'club-easy-event' ); ?></strong></label>

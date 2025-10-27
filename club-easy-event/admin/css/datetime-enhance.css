@@ -1,0 +1,10 @@
+.cee-time-select {
+        margin-top: 4px;
+        min-width: 120px;
+}
+
+.cee-datetime-hint {
+        margin-top: 4px;
+        font-size: 12px;
+        color: #555d66;
+}

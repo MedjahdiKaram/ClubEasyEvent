@@ -198,6 +198,216 @@ msgctxt "Post type general name"
 msgid "Lieux"
 msgstr "Venues"
 
+#: admin/class-cee-admin.php
+msgid "Gestion des rôles"
+msgstr "Roles management"
+
+#: admin/class-cee-admin.php
+msgid "Filtrer les utilisateurs…"
+msgstr "Filter users…"
+
+#: admin/class-cee-admin.php
+msgid "Copié !"
+msgstr "Copied!"
+
+#: admin/class-cee-admin.php
+msgid "Copiez le shortcode manuellement."
+msgstr "Copy the shortcode manually."
+
+#: admin/class-cee-admin.php
+msgid "Décaler de combien de jours vers le futur ?"
+msgstr "Shift how many days forward?"
+
+#: admin/class-cee-admin.php
+msgid "Décaler de combien de jours vers le passé ?"
+msgstr "Shift how many days backward?"
+
+#: admin/class-cee-admin.php
+msgid "Veuillez saisir un nombre de jours positif."
+msgstr "Please enter a positive number of days."
+
+#: admin/class-cee-admin.php
+msgid "Date de l’événement"
+msgstr "Event date"
+
+#: admin/class-cee-admin.php
+msgid "Décaler de +N jours"
+msgstr "Shift by +N days"
+
+#: admin/class-cee-admin.php
+msgid "Décaler de −N jours"
+msgstr "Shift by −N days"
+
+#: admin/class-cee-admin.php
+msgid "%1$d événement a été décalé de %2$d jour."
+msgid_plural "%1$d événements ont été décalés de %2$d jours."
+msgstr[0] "%1$d event was shifted by %2$d day."
+msgstr[1] "%1$d events were shifted by %2$d days."
+
+#: admin/class-cee-admin.php
+msgid "Décalage vers le passé appliqué."
+msgstr "Backwards shift applied."
+
+#: admin/class-cee-admin.php
+msgid "Décalage vers le futur appliqué."
+msgstr "Forward shift applied."
+
+#: admin/class-cee-admin.php
+msgid "Action groupée non autorisée. Veuillez réessayer."
+msgstr "Bulk action not allowed. Please try again."
+
+#: admin/class-cee-admin.php
+msgid "Veuillez indiquer un nombre de jours supérieur à zéro."
+msgstr "Please enter a number of days greater than zero."
+
+#: admin/class-cee-admin.php
+msgid "Aucun événement n’a été mis à jour."
+msgstr "No events were updated."
+
+#: admin/class-cee-roles-manager.php
+msgid "La requête a expiré. Veuillez réessayer."
+msgstr "The request has expired. Please try again."
+
+#: admin/class-cee-roles-manager.php
+msgid "Vous ne pouvez pas modifier cet utilisateur."
+msgstr "You cannot edit this user."
+
+#: admin/class-cee-roles-manager.php
+msgid "Rôles mis à jour."
+msgstr "Roles updated."
+
+#: admin/class-cee-roles-manager.php
+msgid "Sélectionnez au moins un utilisateur."
+msgstr "Select at least one user."
+
+#: admin/class-cee-roles-manager.php
+msgid "La requête groupée a expiré. Veuillez réessayer."
+msgstr "The bulk request has expired. Please try again."
+
+#: admin/class-cee-roles-manager.php
+msgid "Veuillez sélectionner une action groupée valide."
+msgstr "Please select a valid bulk action."
+
+#: admin/class-cee-roles-manager.php
+msgid "Sélectionnez au moins un rôle à appliquer."
+msgstr "Select at least one role to apply."
+
+#: admin/class-cee-roles-manager.php
+msgid "%d utilisateur mis à jour."
+msgid_plural "%d utilisateurs mis à jour."
+msgstr[0] "%d user updated."
+msgstr[1] "%d users updated."
+
+#: admin/class-cee-roles-manager.php
+msgid "Aucun utilisateur n’a été modifié."
+msgstr "No users were modified."
+
+#: admin/class-cee-roles-manager.php
+msgid "Responsable d’équipe"
+msgstr "Team manager"
+
+#: admin/views/roles-manager.php
+msgid "Attribuez rapidement des rôles aux utilisateurs de votre club. Seuls les administrateurs peuvent accéder à cette page."
+msgstr "Quickly assign roles to your club members. Only administrators can access this page."
+
+#: admin/views/roles-manager.php
+msgid "Rechercher des utilisateurs"
+msgstr "Search users"
+
+#: admin/views/roles-manager.php
+msgid "Rechercher par nom ou e-mail…"
+msgstr "Search by name or email…"
+
+#: admin/views/roles-manager.php
+msgid "Rechercher"
+msgstr "Search"
+
+#: admin/views/roles-manager.php
+msgid "Filtrer la liste des utilisateurs"
+msgstr "Filter the user list"
+
+#: admin/views/roles-manager.php
+msgid "Filtrer rapidement…"
+msgstr "Quick filter…"
+
+#: admin/views/roles-manager.php
+msgid "%d utilisateur trouvé"
+msgid_plural "%d utilisateurs trouvés"
+msgstr[0] "%d user found"
+msgstr[1] "%d users found"
+
+#: admin/views/roles-manager.php
+msgid "Action groupée"
+msgstr "Bulk action"
+
+#: admin/views/roles-manager.php
+msgid "Affecter les rôles sélectionnés"
+msgstr "Assign selected roles"
+
+#: admin/views/roles-manager.php
+msgid "Retirer les rôles sélectionnés"
+msgstr "Remove selected roles"
+
+#: admin/views/roles-manager.php
+msgid "Rôles à appliquer"
+msgstr "Roles to apply"
+
+#: admin/views/roles-manager.php
+msgid "Appliquer"
+msgstr "Apply"
+
+#: admin/views/roles-manager.php
+msgid "Utilisateur"
+msgstr "User"
+
+#: admin/views/roles-manager.php
+msgid "Rôles"
+msgstr "Roles"
+
+#: admin/views/roles-manager.php
+msgid "Actions"
+msgstr "Actions"
+
+#: admin/views/roles-manager.php
+msgid "Aucun utilisateur ne correspond à votre recherche."
+msgstr "No users match your search."
+
+#: admin/views/roles-manager.php
+msgid "Mettre à jour"
+msgstr "Update"
+
+#: admin/views/roles-manager.php
+msgid "&laquo; Précédent"
+msgstr "&laquo; Previous"
+
+#: admin/views/roles-manager.php
+msgid "Suivant &raquo;"
+msgstr "Next &raquo;"
+
+#: admin/views/roles-manager.php
+msgid "Cochez les rôles à conserver pour chaque utilisateur puis cliquez sur « Mettre à jour ». Les actions groupées permettent d’ajouter ou de retirer des rôles en une seule fois."
+msgstr "Tick the roles to keep for each user then click “Update”. Bulk actions let you add or remove roles in one go."
+
+#: admin/js/datetime-enhance.js
+msgid "Sélectionnez une heure"
+msgstr "Select a time"
+
+#: admin/views/meta-event.php
+msgid "Format attendu : 2025-10-26"
+msgstr "Expected format: 2025-10-26"
+
+#: admin/views/meta-event.php
+msgid "Format attendu : 14:30"
+msgstr "Expected format: 14:30"
+
+#: includes/class-cee-admin-columns.php
+msgid "Copier"
+msgstr "Copy"
+
+#: includes/class-cee-shortcodes.php
+msgid "Voir les détails"
+msgstr "View details"
+
 #: includes/class-cee-taxonomies.php:63
 msgctxt "Taxonomy singular name"
 msgid "Ligue"

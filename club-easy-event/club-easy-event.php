@@ -9,7 +9,7 @@
  * Plugin Name: Club Easy Event
  * Plugin URI:
  * Description: Le plugin le plus simple pour gérer les événements, les équipes et les membres de votre club sportif directement dans WordPress.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author:
  * Author URI:
  * License: GPLv2 or later
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'CEE_VERSION', '1.0.0' );
+define( 'CEE_VERSION', '1.1.0' );
 define( 'CEE_PLUGIN_FILE', __FILE__ );
 define( 'CEE_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'CEE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
