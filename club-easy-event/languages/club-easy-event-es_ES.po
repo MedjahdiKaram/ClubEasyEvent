@@ -198,6 +198,216 @@ msgctxt "Post type general name"
 msgid "Lieux"
 msgstr "Lugares"
 
+#: admin/class-cee-admin.php
+msgid "Gestion des rôles"
+msgstr "Gestión de roles"
+
+#: admin/class-cee-admin.php
+msgid "Filtrer les utilisateurs…"
+msgstr "Filtrar usuarios…"
+
+#: admin/class-cee-admin.php
+msgid "Copié !"
+msgstr "¡Copiado!"
+
+#: admin/class-cee-admin.php
+msgid "Copiez le shortcode manuellement."
+msgstr "Copia el shortcode manualmente."
+
+#: admin/class-cee-admin.php
+msgid "Décaler de combien de jours vers le futur ?"
+msgstr "¿Cuántos días deseas adelantar?"
+
+#: admin/class-cee-admin.php
+msgid "Décaler de combien de jours vers le passé ?"
+msgstr "¿Cuántos días deseas atrasar?"
+
+#: admin/class-cee-admin.php
+msgid "Veuillez saisir un nombre de jours positif."
+msgstr "Introduce un número de días positivo."
+
+#: admin/class-cee-admin.php
+msgid "Date de l’événement"
+msgstr "Fecha del evento"
+
+#: admin/class-cee-admin.php
+msgid "Décaler de +N jours"
+msgstr "Desplazar +N días"
+
+#: admin/class-cee-admin.php
+msgid "Décaler de −N jours"
+msgstr "Desplazar −N días"
+
+#: admin/class-cee-admin.php
+msgid "%1$d événement a été décalé de %2$d jour."
+msgid_plural "%1$d événements ont été décalés de %2$d jours."
+msgstr[0] "%1$d evento se ha desplazado %2$d día."
+msgstr[1] "%1$d eventos se han desplazado %2$d días."
+
+#: admin/class-cee-admin.php
+msgid "Décalage vers le passé appliqué."
+msgstr "Desplazamiento hacia el pasado aplicado."
+
+#: admin/class-cee-admin.php
+msgid "Décalage vers le futur appliqué."
+msgstr "Desplazamiento hacia el futuro aplicado."
+
+#: admin/class-cee-admin.php
+msgid "Action groupée non autorisée. Veuillez réessayer."
+msgstr "Acción masiva no permitida. Inténtalo de nuevo."
+
+#: admin/class-cee-admin.php
+msgid "Veuillez indiquer un nombre de jours supérieur à zéro."
+msgstr "Indica un número de días mayor que cero."
+
+#: admin/class-cee-admin.php
+msgid "Aucun événement n’a été mis à jour."
+msgstr "No se actualizó ningún evento."
+
+#: admin/class-cee-roles-manager.php
+msgid "La requête a expiré. Veuillez réessayer."
+msgstr "La solicitud ha caducado. Inténtalo de nuevo."
+
+#: admin/class-cee-roles-manager.php
+msgid "Vous ne pouvez pas modifier cet utilisateur."
+msgstr "No puedes editar a este usuario."
+
+#: admin/class-cee-roles-manager.php
+msgid "Rôles mis à jour."
+msgstr "Roles actualizados."
+
+#: admin/class-cee-roles-manager.php
+msgid "Sélectionnez au moins un utilisateur."
+msgstr "Selecciona al menos un usuario."
+
+#: admin/class-cee-roles-manager.php
+msgid "La requête groupée a expiré. Veuillez réessayer."
+msgstr "La solicitud masiva ha caducado. Inténtalo de nuevo."
+
+#: admin/class-cee-roles-manager.php
+msgid "Veuillez sélectionner une action groupée valide."
+msgstr "Selecciona una acción masiva válida."
+
+#: admin/class-cee-roles-manager.php
+msgid "Sélectionnez au moins un rôle à appliquer."
+msgstr "Selecciona al menos un rol para aplicar."
+
+#: admin/class-cee-roles-manager.php
+msgid "%d utilisateur mis à jour."
+msgid_plural "%d utilisateurs mis à jour."
+msgstr[0] "%d usuario actualizado."
+msgstr[1] "%d usuarios actualizados."
+
+#: admin/class-cee-roles-manager.php
+msgid "Aucun utilisateur n’a été modifié."
+msgstr "No se modificó ningún usuario."
+
+#: admin/class-cee-roles-manager.php
+msgid "Responsable d’équipe"
+msgstr "Responsable de equipo"
+
+#: admin/views/roles-manager.php
+msgid "Attribuez rapidement des rôles aux utilisateurs de votre club. Seuls les administrateurs peuvent accéder à cette page."
+msgstr "Asigna roles rápidamente a los miembros de tu club. Solo los administradores pueden acceder a esta página."
+
+#: admin/views/roles-manager.php
+msgid "Rechercher des utilisateurs"
+msgstr "Buscar usuarios"
+
+#: admin/views/roles-manager.php
+msgid "Rechercher par nom ou e-mail…"
+msgstr "Buscar por nombre o correo…"
+
+#: admin/views/roles-manager.php
+msgid "Rechercher"
+msgstr "Buscar"
+
+#: admin/views/roles-manager.php
+msgid "Filtrer la liste des utilisateurs"
+msgstr "Filtrar la lista de usuarios"
+
+#: admin/views/roles-manager.php
+msgid "Filtrer rapidement…"
+msgstr "Filtrado rápido…"
+
+#: admin/views/roles-manager.php
+msgid "%d utilisateur trouvé"
+msgid_plural "%d utilisateurs trouvés"
+msgstr[0] "%d usuario encontrado"
+msgstr[1] "%d usuarios encontrados"
+
+#: admin/views/roles-manager.php
+msgid "Action groupée"
+msgstr "Acción masiva"
+
+#: admin/views/roles-manager.php
+msgid "Affecter les rôles sélectionnés"
+msgstr "Asignar los roles seleccionados"
+
+#: admin/views/roles-manager.php
+msgid "Retirer les rôles sélectionnés"
+msgstr "Quitar los roles seleccionados"
+
+#: admin/views/roles-manager.php
+msgid "Rôles à appliquer"
+msgstr "Roles a aplicar"
+
+#: admin/views/roles-manager.php
+msgid "Appliquer"
+msgstr "Aplicar"
+
+#: admin/views/roles-manager.php
+msgid "Utilisateur"
+msgstr "Usuario"
+
+#: admin/views/roles-manager.php
+msgid "Rôles"
+msgstr "Roles"
+
+#: admin/views/roles-manager.php
+msgid "Actions"
+msgstr "Acciones"
+
+#: admin/views/roles-manager.php
+msgid "Aucun utilisateur ne correspond à votre recherche."
+msgstr "Ningún usuario coincide con tu búsqueda."
+
+#: admin/views/roles-manager.php
+msgid "Mettre à jour"
+msgstr "Actualizar"
+
+#: admin/views/roles-manager.php
+msgid "&laquo; Précédent"
+msgstr "&laquo; Anterior"
+
+#: admin/views/roles-manager.php
+msgid "Suivant &raquo;"
+msgstr "Siguiente &raquo;"
+
+#: admin/views/roles-manager.php
+msgid "Cochez les rôles à conserver pour chaque utilisateur puis cliquez sur « Mettre à jour ». Les actions groupées permettent d’ajouter ou de retirer des rôles en une seule fois."
+msgstr "Marca los roles que quieres mantener para cada usuario y haz clic en «Actualizar». Las acciones masivas te permiten añadir o quitar roles de una sola vez."
+
+#: admin/js/datetime-enhance.js
+msgid "Sélectionnez une heure"
+msgstr "Selecciona una hora"
+
+#: admin/views/meta-event.php
+msgid "Format attendu : 2025-10-26"
+msgstr "Formato esperado: 2025-10-26"
+
+#: admin/views/meta-event.php
+msgid "Format attendu : 14:30"
+msgstr "Formato esperado: 14:30"
+
+#: includes/class-cee-admin-columns.php
+msgid "Copier"
+msgstr "Copiar"
+
+#: includes/class-cee-shortcodes.php
+msgid "Voir les détails"
+msgstr "Ver detalles"
+
 #: includes/class-cee-taxonomies.php:63
 msgctxt "Taxonomy singular name"
 msgid "Ligue"

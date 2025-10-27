@@ -68,7 +68,7 @@ $total_steps = count( $steps );
                                 <h3 class="cee-onboarding__step-title"><?php echo esc_html( $step['title'] ); ?></h3>
                                 <p class="cee-onboarding__step-description"><?php echo esc_html( $step['description'] ); ?></p>
                                 <?php if ( ! empty( $step['link'] ) ) : ?>
-                                        <a class="button button-secondary cee-onboarding__step-link" href="<?php echo esc_url( $step['link'] ); ?>">
+                                        <a class="button button-secondary cee-onboarding__step-link" href="<?php echo esc_url( $step['link'] ); ?>" target="_blank" rel="noopener noreferrer">
                                                 <?php echo esc_html( $step['link_label'] ); ?>
                                         </a>
                                 <?php endif; ?>

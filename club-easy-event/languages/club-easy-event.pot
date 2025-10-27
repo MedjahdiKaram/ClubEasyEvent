@@ -71,6 +71,224 @@ msgstr ""
 msgid "Aucun événement à afficher."
 msgstr ""
 
+#: admin/class-cee-admin.php
+msgid "Lieux"
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Ajouter un lieu"
+msgstr ""
+
+#: admin/class-cee-admin.php admin/views/roles-manager.php
+msgid "Gestion des rôles"
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Filtrer les utilisateurs…"
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Copié !"
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Copiez le shortcode manuellement."
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Décaler de combien de jours vers le futur ?"
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Décaler de combien de jours vers le passé ?"
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Veuillez saisir un nombre de jours positif."
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Date de l’événement"
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Décaler de +N jours"
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Décaler de −N jours"
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "%1$d événement a été décalé de %2$d jour."
+msgid_plural "%1$d événements ont été décalés de %2$d jours."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-cee-admin.php
+msgid "Décalage vers le passé appliqué."
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Décalage vers le futur appliqué."
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Action groupée non autorisée. Veuillez réessayer."
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Veuillez indiquer un nombre de jours supérieur à zéro."
+msgstr ""
+
+#: admin/class-cee-admin.php
+msgid "Aucun événement n’a été mis à jour."
+msgstr ""
+
+#: admin/class-cee-roles-manager.php
+msgid "La requête a expiré. Veuillez réessayer."
+msgstr ""
+
+#: admin/class-cee-roles-manager.php
+msgid "Vous ne pouvez pas modifier cet utilisateur."
+msgstr ""
+
+#: admin/class-cee-roles-manager.php
+msgid "Rôles mis à jour."
+msgstr ""
+
+#: admin/class-cee-roles-manager.php
+msgid "Sélectionnez au moins un utilisateur."
+msgstr ""
+
+#: admin/class-cee-roles-manager.php
+msgid "La requête groupée a expiré. Veuillez réessayer."
+msgstr ""
+
+#: admin/class-cee-roles-manager.php
+msgid "Veuillez sélectionner une action groupée valide."
+msgstr ""
+
+#: admin/class-cee-roles-manager.php
+msgid "Sélectionnez au moins un rôle à appliquer."
+msgstr ""
+
+#: admin/class-cee-roles-manager.php
+msgid "%d utilisateur mis à jour."
+msgid_plural "%d utilisateurs mis à jour."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/class-cee-roles-manager.php
+msgid "Aucun utilisateur n’a été modifié."
+msgstr ""
+
+#: admin/class-cee-roles-manager.php
+msgid "Responsable d’équipe"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Attribuez rapidement des rôles aux utilisateurs de votre club. Seuls les administrateurs peuvent accéder à cette page."
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Rechercher des utilisateurs"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Rechercher par nom ou e-mail…"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Rechercher"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Filtrer la liste des utilisateurs"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Filtrer rapidement…"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "%d utilisateur trouvé"
+msgid_plural "%d utilisateurs trouvés"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/roles-manager.php
+msgid "Action groupée"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Affecter les rôles sélectionnés"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Retirer les rôles sélectionnés"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Rôles à appliquer"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Appliquer"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Utilisateur"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Rôles"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Actions"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Aucun utilisateur ne correspond à votre recherche."
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Mettre à jour"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "&laquo; Précédent"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Suivant &raquo;"
+msgstr ""
+
+#: admin/views/roles-manager.php
+msgid "Cochez les rôles à conserver pour chaque utilisateur puis cliquez sur « Mettre à jour ». Les actions groupées permettent d’ajouter ou de retirer des rôles en une seule fois."
+msgstr ""
+
+#: admin/js/datetime-enhance.js
+msgid "Sélectionnez une heure"
+msgstr ""
+
+#: admin/views/meta-event.php
+msgid "Format attendu : 2025-10-26"
+msgstr ""
+
+#: admin/views/meta-event.php
+msgid "Format attendu : 14:30"
+msgstr ""
+
+#: includes/class-cee-admin-columns.php
+msgid "Copier"
+msgstr ""
+
+#: includes/class-cee-shortcodes.php
+msgid "Voir les détails"
+msgstr ""
+
 #: includes/class-cee-settings.php:83
 msgid "Balises disponibles: {event_name}, {event_date}, {event_time}, {event_link}, {team_name}, {venue}, {user_name}"
 msgstr ""

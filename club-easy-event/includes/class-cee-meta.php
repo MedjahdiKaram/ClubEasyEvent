@@ -111,11 +111,13 @@ class CEE_Meta {
 			return;
 		}
 
-		$event_date = isset( $_POST['cee_event_date'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_event_date'] ) ) : '';
-		update_post_meta( $post_id, '_cee_event_date', $event_date );
+                $event_date = isset( $_POST['cee_event_date'] ) ? wp_unslash( $_POST['cee_event_date'] ) : '';
+                $event_date = self::sanitize_event_date( $event_date );
+                update_post_meta( $post_id, '_cee_event_date', $event_date );
 
-		$event_time = isset( $_POST['cee_event_time'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_event_time'] ) ) : '';
-		update_post_meta( $post_id, '_cee_event_time', $event_time );
+                $event_time = isset( $_POST['cee_event_time'] ) ? wp_unslash( $_POST['cee_event_time'] ) : '';
+                $event_time = self::sanitize_event_time( $event_time );
+                update_post_meta( $post_id, '_cee_event_time', $event_time );
 
 		$event_type_input = isset( $_POST['cee_event_type'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_event_type'] ) ) : '';
 		$event_type_key   = self::get_event_type_key( $event_type_input );
@@ -262,18 +264,67 @@ class CEE_Meta {
 	 *
 	 * @return void
 	 */
-	public function save_season_meta( $term_id ) {
-		if ( ! isset( $_POST['cee_season_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cee_season_meta_nonce'] ) ), 'cee_season_meta' ) ) {
-			return;
-		}
+        public function save_season_meta( $term_id ) {
+                if ( ! isset( $_POST['cee_season_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cee_season_meta_nonce'] ) ), 'cee_season_meta' ) ) {
+                        return;
+                }
 
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
-		}
+                if ( ! current_user_can( 'manage_options' ) ) {
+                        return;
+                }
 
-		$product_id = isset( $_POST['cee_season_wc_product_id'] ) ? absint( $_POST['cee_season_wc_product_id'] ) : 0;
-		update_term_meta( $term_id, '_cee_season_wc_product_id', $product_id );
-	}
+                $product_id = isset( $_POST['cee_season_wc_product_id'] ) ? absint( $_POST['cee_season_wc_product_id'] ) : 0;
+                update_term_meta( $term_id, '_cee_season_wc_product_id', $product_id );
+        }
+
+        /**
+         * Sanitize event date.
+         *
+         * @param string $value Raw value.
+         *
+         * @return string
+         */
+        public static function sanitize_event_date( $value ) {
+                $value = is_string( $value ) ? trim( $value ) : '';
+                if ( '' === $value ) {
+                        return '';
+                }
+
+                $parts = explode( '-', $value );
+                if ( 3 !== count( $parts ) ) {
+                        return '';
+                }
+
+                $year  = (int) $parts[0];
+                $month = (int) $parts[1];
+                $day   = (int) $parts[2];
+
+                if ( ! wp_checkdate( $month, $day, $year, $value ) ) {
+                        return '';
+                }
+
+                return sprintf( '%04d-%02d-%02d', $year, $month, $day );
+        }
+
+        /**
+         * Sanitize event time.
+         *
+         * @param string $value Raw value.
+         *
+         * @return string
+         */
+        public static function sanitize_event_time( $value ) {
+                $value = is_string( $value ) ? trim( $value ) : '';
+                if ( '' === $value ) {
+                        return '';
+                }
+
+                if ( preg_match( '/^(?:[01]\d|2[0-3]):[0-5]\d$/', $value ) ) {
+                        return $value;
+                }
+
+                return '';
+        }
 
 	/**
 	 * Check whether meta can be saved.

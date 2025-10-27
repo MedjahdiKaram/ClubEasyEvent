@@ -23,22 +23,27 @@ class CEE_Admin_Columns {
 	 */
 	public function add_columns( $columns ) {
 		$new_columns = array();
-		foreach ( $columns as $key => $label ) {
-			if ( 'title' === $key ) {
-				$new_columns['title'] = __( 'Titre', 'club-easy-event' );
-				$new_columns['cee_date'] = __( 'Date', 'club-easy-event' );
-				$new_columns['cee_time'] = __( 'Heure', 'club-easy-event' );
-				$new_columns['cee_teams'] = __( 'Équipes', 'club-easy-event' );
-				$new_columns['cee_season'] = __( 'Saison', 'club-easy-event' );
-			} elseif ( 'date' === $key ) {
-				$new_columns['date'] = $label;
-			} else {
-				$new_columns[ $key ] = $label;
-			}
-		}
+                foreach ( $columns as $key => $label ) {
+                        if ( 'title' === $key ) {
+                                $new_columns['title']       = __( 'Titre', 'club-easy-event' );
+                                $new_columns['cee_date']    = __( 'Date', 'club-easy-event' );
+                                $new_columns['cee_time']    = __( 'Heure', 'club-easy-event' );
+                                $new_columns['cee_teams']   = __( 'Équipes', 'club-easy-event' );
+                                $new_columns['cee_season']  = __( 'Saison', 'club-easy-event' );
+                                $new_columns['cee_shortcode'] = __( 'Shortcode', 'club-easy-event' );
+                        } elseif ( 'date' === $key ) {
+                                $new_columns['date'] = $label;
+                        } else {
+                                $new_columns[ $key ] = $label;
+                        }
+                }
 
-		return $new_columns;
-	}
+                if ( ! isset( $new_columns['cee_shortcode'] ) ) {
+                        $new_columns['cee_shortcode'] = __( 'Shortcode', 'club-easy-event' );
+                }
+
+                return $new_columns;
+        }
 
 	/**
 	 * Render custom column values.
@@ -50,12 +55,13 @@ class CEE_Admin_Columns {
 	 */
 	public function render_column( $column, $post_id ) {
 		switch ( $column ) {
-			case 'cee_date':
-				$event_date = get_post_meta( $post_id, '_cee_event_date', true );
-				if ( $event_date ) {
-					echo esc_html( date_i18n( get_option( 'date_format' ), strtotime( $event_date ) ) );
-				}
-				break;
+                        case 'cee_date':
+                                $event_date = get_post_meta( $post_id, '_cee_event_date', true );
+                                if ( $event_date ) {
+                                        $formatted = date_i18n( get_option( 'date_format' ), strtotime( $event_date ) );
+                                        printf( '<span class="cee-event-date-display" data-raw-date="%1$s">%2$s</span>', esc_attr( $event_date ), esc_html( $formatted ) );
+                                }
+                                break;
 			case 'cee_time':
 				$event_time = get_post_meta( $post_id, '_cee_event_time', true );
 				if ( $event_time ) {
@@ -79,15 +85,66 @@ class CEE_Admin_Columns {
 				$separator = ' ' . esc_html__( 'vs', 'club-easy-event' ) . ' ';
 				echo esc_html( implode( $separator, array_filter( $teams ) ) );
 				break;
-			case 'cee_season':
-				$terms = get_the_terms( $post_id, 'cee_season' );
-				if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
-					$names = wp_list_pluck( $terms, 'name' );
-					echo esc_html( implode( ', ', $names ) );
-				}
-				break;
-		}
-	}
+                        case 'cee_season':
+                                $terms = get_the_terms( $post_id, 'cee_season' );
+                                if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+                                        $names = wp_list_pluck( $terms, 'name' );
+                                        echo esc_html( implode( ', ', $names ) );
+                                }
+                                break;
+                        case 'cee_shortcode':
+                                $shortcode = sprintf( '[cee_event id="%d"]', absint( $post_id ) );
+                                $this->render_shortcode_column( $shortcode );
+                                break;
+                }
+        }
+
+        /**
+         * Add columns for teams.
+         *
+         * @param array $columns Existing columns.
+         *
+         * @return array
+         */
+        public function add_team_columns( $columns ) {
+                $columns['cee_shortcode'] = __( 'Shortcode', 'club-easy-event' );
+                return $columns;
+        }
+
+        /**
+         * Render team columns.
+         *
+         * @param string $column  Column name.
+         * @param int    $post_id Post ID.
+         *
+         * @return void
+         */
+        public function render_team_column( $column, $post_id ) {
+                if ( 'cee_shortcode' === $column ) {
+                        $shortcode = sprintf( '[cee_roster team_id="%d"]', absint( $post_id ) );
+                        $this->render_shortcode_column( $shortcode );
+                }
+        }
+
+        /**
+         * Render shortcode column output.
+         *
+         * @param string $shortcode Shortcode string.
+         *
+         * @return void
+         */
+        protected function render_shortcode_column( $shortcode ) {
+                if ( ! $shortcode ) {
+                        return;
+                }
+
+                printf(
+                        '<div class="cee-shortcode-wrapper"><code>%1$s</code> <button type="button" class="button button-small cee-shortcode-copy" data-shortcode="%2$s">%3$s</button></div>',
+                        esc_html( $shortcode ),
+                        esc_attr( $shortcode ),
+                        esc_html__( 'Copier', 'club-easy-event' )
+                );
+        }
 
 	/**
 	 * Register sortable columns.

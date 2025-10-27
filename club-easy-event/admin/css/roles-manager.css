@@ -1,0 +1,64 @@
+.cee-roles-manager .cee-roles-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 1em 0;
+        gap: 1em;
+        flex-wrap: wrap;
+}
+
+.cee-roles-manager .cee-roles-filter {
+        min-width: 240px;
+}
+
+.cee-roles-manager .cee-roles-bulk-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 2em;
+        margin-bottom: 1em;
+        flex-wrap: wrap;
+}
+
+.cee-roles-manager .cee-roles-bulk-roles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75em 1.5em;
+        margin: 0 0 0.5em;
+}
+
+.cee-roles-manager .cee-roles-bulk-roles label {
+        display: flex;
+        align-items: center;
+        gap: 0.35em;
+}
+
+.cee-roles-manager .cee-roles-manager-table .cee-roles-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em 1.5em;
+        align-items: center;
+}
+
+.cee-roles-manager .cee-roles-manager-table .cee-roles-list label {
+        display: flex;
+        align-items: center;
+        gap: 0.35em;
+        white-space: nowrap;
+}
+
+.cee-roles-manager .cee-roles-actions {
+        text-align: right;
+}
+
+@media (max-width: 782px) {
+        .cee-roles-manager .cee-roles-actions {
+                text-align: left;
+                margin-top: 0.5em;
+        }
+
+        .cee-roles-manager .cee-roles-manager-table .cee-roles-list {
+                flex-direction: column;
+                align-items: flex-start;
+        }
+}

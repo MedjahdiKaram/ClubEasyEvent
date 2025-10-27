@@ -156,7 +156,8 @@ protected $i18n;
 		require_once CEE_PLUGIN_DIR . 'includes/class-cee-woocommerce.php';
 		require_once CEE_PLUGIN_DIR . 'includes/class-cee-roles.php';
 		require_once CEE_PLUGIN_DIR . 'public/class-cee-frontend.php';
-		require_once CEE_PLUGIN_DIR . 'admin/class-cee-admin.php';
+                require_once CEE_PLUGIN_DIR . 'admin/class-cee-admin.php';
+                require_once CEE_PLUGIN_DIR . 'admin/class-cee-roles-manager.php';
 
 		$this->loader       = new CEE_Loader();
 		$this->cpt          = new CEE_CPT();
@@ -210,10 +211,20 @@ protected $i18n;
                 $this->loader->add_action( 'wp_ajax_cee_onboarding_dismiss', CEE_Onboarding::class, 'ajax_dismiss' );
                 $this->loader->add_action( 'admin_init', $this->settings, 'register_settings' );
 
-		$this->loader->add_filter( 'manage_edit-cee_event_columns', $this->admin_columns, 'add_columns' );
-		$this->loader->add_action( 'manage_cee_event_posts_custom_column', $this->admin_columns, 'render_column', 10, 2 );
-		$this->loader->add_filter( 'manage_edit-cee_event_sortable_columns', $this->admin_columns, 'register_sortable_columns' );
-		$this->loader->add_action( 'pre_get_posts', $this->admin_columns, 'handle_sorting' );
+                $this->loader->add_filter( 'manage_edit-cee_event_columns', $this->admin_columns, 'add_columns' );
+                $this->loader->add_action( 'manage_cee_event_posts_custom_column', $this->admin_columns, 'render_column', 10, 2 );
+                $this->loader->add_filter( 'manage_edit-cee_event_sortable_columns', $this->admin_columns, 'register_sortable_columns' );
+                $this->loader->add_action( 'pre_get_posts', $this->admin_columns, 'handle_sorting' );
+                $this->loader->add_filter( 'manage_edit-cee_team_columns', $this->admin_columns, 'add_team_columns' );
+                $this->loader->add_action( 'manage_cee_team_posts_custom_column', $this->admin_columns, 'render_team_column', 10, 2 );
+
+                $this->loader->add_action( 'quick_edit_custom_box', $this->admin, 'quick_edit_date_field', 10, 2 );
+                $this->loader->add_action( 'save_post_cee_event', $this->admin, 'save_quick_edit_date', 5 );
+                $this->loader->add_action( 'admin_print_footer_scripts-edit.php', $this->admin, 'print_quick_edit_script' );
+                $this->loader->add_filter( 'bulk_actions-edit-cee_event', $this->admin, 'register_bulk_actions' );
+                $this->loader->add_filter( 'handle_bulk_actions-edit-cee_event', $this->admin, 'handle_bulk_actions', 10, 3 );
+                $this->loader->add_action( 'admin_footer-edit.php', $this->admin, 'print_bulk_action_fields' );
+                $this->loader->add_action( 'admin_notices', $this->admin, 'render_bulk_action_notice' );
 	}
 
 	/**
