@@ -32,8 +32,11 @@ class CEE_Settings {
 		add_settings_section( 'cee_email_section', __( 'Rappels par e-mail', 'club-easy-event' ), '__return_false', 'cee_settings' );
 		add_settings_field( 'email_template', __( 'Modèle d’e-mail', 'club-easy-event' ), array( $this, 'render_email_template_field' ), 'cee_settings', 'cee_email_section' );
 
-		add_settings_section( 'cee_style_section', __( 'Style', 'club-easy-event' ), '__return_false', 'cee_settings' );
-		add_settings_field( 'primary_color', __( 'Couleur principale (hex)', 'club-easy-event' ), array( $this, 'render_primary_color_field' ), 'cee_settings', 'cee_style_section' );
+                add_settings_section( 'cee_style_section', __( 'Style', 'club-easy-event' ), '__return_false', 'cee_settings' );
+                add_settings_field( 'primary_color', __( 'Couleur principale (hex)', 'club-easy-event' ), array( $this, 'render_primary_color_field' ), 'cee_settings', 'cee_style_section' );
+
+                add_settings_section( 'cee_onboarding_section', __( 'Tutoriel', 'club-easy-event' ), '__return_false', 'cee_settings' );
+                add_settings_field( 'reactivate_onboarding', __( 'Réactiver le tutoriel', 'club-easy-event' ), array( $this, 'render_reactivate_onboarding_field' ), 'cee_settings', 'cee_onboarding_section' );
 	}
 
 	/**
@@ -56,7 +59,13 @@ class CEE_Settings {
 			$output['primary_color'] = $color ? $color : $defaults['primary_color'];
 		}
 
-		return $output;
+                if ( isset( $input['reactivate_onboarding'] ) && '1' === $input['reactivate_onboarding'] && is_user_logged_in() ) {
+                        delete_user_meta( get_current_user_id(), CEE_Onboarding::META_KEY );
+                }
+
+                unset( $output['reactivate_onboarding'] );
+
+                return $output;
 	}
 
 	/**
@@ -89,15 +98,42 @@ class CEE_Settings {
 	 *
 	 * @return void
 	 */
-	public function render_primary_color_field() {
-		$settings = $this->get_settings();
-		$value    = isset( $settings['primary_color'] ) ? $settings['primary_color'] : '#0d6efd';
-		printf(
-			'<input type="text" id="cee_settings_primary_color" name="%1$s[primary_color]" value="%2$s" class="regular-text" />',
-			esc_attr( $this->option_name ),
-			esc_attr( $value )
-		);
-	}
+        public function render_primary_color_field() {
+                $settings = $this->get_settings();
+                $value    = isset( $settings['primary_color'] ) ? $settings['primary_color'] : '#0d6efd';
+                printf(
+                        '<input type="text" id="cee_settings_primary_color" name="%1$s[primary_color]" value="%2$s" class="regular-text" />',
+                        esc_attr( $this->option_name ),
+                        esc_attr( $value )
+                );
+        }
+
+        /**
+         * Render onboarding reactivation field.
+         *
+         * @return void
+         */
+        public function render_reactivate_onboarding_field() {
+                if ( ! is_user_logged_in() ) {
+                        esc_html_e( 'Veuillez vous connecter pour modifier ce réglage.', 'club-easy-event' );
+                        return;
+                }
+
+                $field_id    = 'cee_settings_reactivate_onboarding';
+                $description = __( 'Le tutoriel est actuellement actif pour votre compte.', 'club-easy-event' );
+
+                if ( class_exists( 'CEE_Onboarding' ) && CEE_Onboarding::user_dismissed() ) {
+                        $description = __( 'Le tutoriel est actuellement masqué pour votre compte.', 'club-easy-event' );
+                }
+
+                printf(
+                        '<label for="%1$s"><input type="checkbox" id="%1$s" name="%2$s[reactivate_onboarding]" value="1" /> %3$s</label>',
+                        esc_attr( $field_id ),
+                        esc_attr( $this->option_name ),
+                        esc_html__( 'Afficher de nouveau le tutoriel lors de ma prochaine visite.', 'club-easy-event' )
+                );
+                printf( '<p class="description">%s</p>', esc_html( $description ) );
+        }
 
 	/**
 	 * Get settings merged with defaults.

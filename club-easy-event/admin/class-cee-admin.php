@@ -55,31 +55,55 @@ class CEE_Admin {
                         26
                 );
 
-                add_submenu_page(
-                        'cee_dashboard',
-                        __( 'Événements', 'club-easy-event' ),
-                        __( 'Événements', 'club-easy-event' ),
-                        'edit_posts',
-                        'edit.php?post_type=cee_event'
+                $submenus = array(
+                        array(
+                                'page_title' => __( 'Événements', 'club-easy-event' ),
+                                'menu_title' => __( 'Événements', 'club-easy-event' ),
+                                'capability' => 'edit_posts',
+                                'menu_slug'  => 'edit.php?post_type=cee_event',
+                                'callback'   => '',
+                        ),
+                        array(
+                                'page_title' => __( 'Équipes', 'club-easy-event' ),
+                                'menu_title' => __( 'Équipes', 'club-easy-event' ),
+                                'capability' => 'edit_posts',
+                                'menu_slug'  => 'edit.php?post_type=cee_team',
+                                'callback'   => '',
+                        ),
+                        array(
+                                'page_title' => __( 'Joueurs', 'club-easy-event' ),
+                                'menu_title' => __( 'Joueurs', 'club-easy-event' ),
+                                'capability' => 'edit_posts',
+                                'menu_slug'  => 'edit.php?post_type=cee_player',
+                                'callback'   => '',
+                        ),
+                        array(
+                                'page_title' => __( 'Ligues', 'club-easy-event' ),
+                                'menu_title' => __( 'Ligues', 'club-easy-event' ),
+                                'capability' => 'manage_categories',
+                                'menu_slug'  => 'edit-tags.php?taxonomy=cee_league&post_type=cee_event',
+                                'callback'   => '',
+                        ),
+                        array(
+                                'page_title' => __( 'Paramètres', 'club-easy-event' ),
+                                'menu_title' => __( 'Paramètres', 'club-easy-event' ),
+                                'capability' => 'manage_options',
+                                'menu_slug'  => 'cee_settings',
+                                'callback'   => array( $this->settings, 'render_settings_page' ),
+                        ),
                 );
 
-                add_submenu_page(
-                        'cee_dashboard',
-                        __( 'Équipes', 'club-easy-event' ),
-                        __( 'Équipes', 'club-easy-event' ),
-                        'edit_posts',
-                        'edit.php?post_type=cee_team'
-                );
-
-                add_submenu_page(
-                        'cee_dashboard',
-                        __( 'Paramètres', 'club-easy-event' ),
-                        __( 'Paramètres', 'club-easy-event' ),
-                        'manage_options',
-                        'cee_settings',
-                        array( $this->settings, 'render_settings_page' )
-                );
-	}
+                foreach ( $submenus as $submenu ) {
+                        add_submenu_page(
+                                'cee_dashboard',
+                                $submenu['page_title'],
+                                $submenu['menu_title'],
+                                $submenu['capability'],
+                                $submenu['menu_slug'],
+                                $submenu['callback']
+                        );
+                }
+        }
 
 	/**
 	 * Enqueue admin assets on relevant screens.
@@ -94,16 +118,24 @@ class CEE_Admin {
 			return;
 		}
 
-		$allowed_post_types = array( 'cee_event', 'cee_team', 'cee_player', 'cee_venue' );
-		$post_type          = isset( $screen->post_type ) ? $screen->post_type : '';
-		$is_settings_page   = 'toplevel_page_cee_dashboard' === $hook || 'club-easy-event_page_cee_settings' === $hook;
-		if ( ! in_array( $post_type, $allowed_post_types, true ) && ! $is_settings_page && 'edit-cee_season' !== $screen->id ) {
-			return;
-		}
+                $allowed_post_types = array( 'cee_event', 'cee_team', 'cee_player', 'cee_venue' );
+                $allowed_taxonomies = array( 'cee_season', 'cee_league' );
+                $post_type          = isset( $screen->post_type ) ? $screen->post_type : '';
+                $taxonomy           = isset( $screen->taxonomy ) ? $screen->taxonomy : '';
+                $is_settings_page   = in_array( $hook, array( 'toplevel_page_cee_dashboard', 'club-easy-event_page_cee_settings' ), true );
 
-		wp_enqueue_style( 'wp-color-picker' );
-		wp_enqueue_script( 'jquery-ui-datepicker' );
-		wp_enqueue_script( 'jquery-ui-spinner' );
+                $is_allowed_screen = $is_settings_page
+                        || in_array( $post_type, $allowed_post_types, true )
+                        || in_array( $taxonomy, $allowed_taxonomies, true )
+                        || 'edit-cee_season' === $screen->id;
+
+                if ( ! $is_allowed_screen ) {
+                        return;
+                }
+
+                wp_enqueue_style( 'wp-color-picker' );
+                wp_enqueue_script( 'jquery-ui-datepicker' );
+                wp_enqueue_script( 'jquery-ui-spinner' );
 
 		$inline = <<<'JS'
 	jQuery(function($){
@@ -126,8 +158,22 @@ class CEE_Admin {
 		});
 	});
 JS;
-		wp_add_inline_script( 'jquery-ui-spinner', $inline );
-	}
+                wp_add_inline_script( 'jquery-ui-spinner', $inline );
+
+                if ( class_exists( 'CEE_Onboarding' ) && CEE_Onboarding::is_plugin_screen() && ! CEE_Onboarding::user_dismissed() ) {
+                        wp_enqueue_style( 'cee-onboarding', plugins_url( 'admin/css/cee-onboarding.css', CEE_PLUGIN_FILE ), array(), CEE_VERSION );
+                        wp_enqueue_script( 'cee-onboarding', plugins_url( 'admin/js/cee-onboarding.js', CEE_PLUGIN_FILE ), array( 'jquery', 'wp-i18n' ), CEE_VERSION, true );
+                        wp_set_script_translations( 'cee-onboarding', 'club-easy-event', plugin_dir_path( CEE_PLUGIN_FILE ) . 'languages' );
+                        wp_localize_script(
+                                'cee-onboarding',
+                                'CEEOnboarding',
+                                array(
+                                        'ajax_url' => admin_url( 'admin-ajax.php' ),
+                                        'nonce'    => wp_create_nonce( 'cee_onboarding_nonce' ),
+                                )
+                        );
+                }
+        }
 
 	/**
 	 * Render dashboard overview.

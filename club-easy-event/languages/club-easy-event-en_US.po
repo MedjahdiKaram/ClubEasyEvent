@@ -27,7 +27,7 @@ msgstr "Matchup"
 msgid "Ajouter"
 msgstr "Add"
 
-#: includes/class-cee-cpt.php:106
+#: includes/class-cee-cpt.php:106 admin/views/onboarding.php:29
 msgid "Ajouter un joueur"
 msgstr "Add a player"
 
@@ -519,3 +519,127 @@ msgstr "— Select —"
 #: admin/views/meta-event.php:46
 msgid "— Équipe externe (voir champ texte) —"
 msgstr "— External team (see text field) —"
+#: includes/class-cee-settings.php:38
+msgid "Tutoriel"
+msgstr "Tutorial"
+
+#: includes/class-cee-settings.php:39
+msgid "Réactiver le tutoriel"
+msgstr "Reactivate the tutorial"
+
+#: includes/class-cee-settings.php:118
+msgid "Veuillez vous connecter pour modifier ce réglage."
+msgstr "Please log in to modify this setting."
+
+#: includes/class-cee-settings.php:123
+msgid "Le tutoriel est actuellement actif pour votre compte."
+msgstr "The tutorial is currently active for your account."
+
+#: includes/class-cee-settings.php:126
+msgid "Le tutoriel est actuellement masqué pour votre compte."
+msgstr "The tutorial is currently hidden for your account."
+
+#: includes/class-cee-settings.php:133
+msgid "Afficher de nouveau le tutoriel lors de ma prochaine visite."
+msgstr "Show the tutorial again on my next visit."
+
+#: admin/views/onboarding.php:14
+msgid "Introduction"
+msgstr "Introduction"
+
+#: admin/views/onboarding.php:15
+msgid "Découvrez les fonctionnalités essentielles de Club Easy Event pour organiser vos compétitions en ligne."
+msgstr "Discover the essential features of Club Easy Event to organize your competitions online."
+
+#: admin/views/onboarding.php:17
+msgid "Voir le tableau de bord"
+msgstr "View the dashboard"
+
+#: admin/views/onboarding.php:20
+#: admin/views/onboarding.php:23
+msgid "Créer une équipe"
+msgstr "Create a team"
+
+#: admin/views/onboarding.php:21
+msgid "Ajoutez vos équipes et gérez leurs informations depuis un seul endroit."
+msgstr "Add your teams and manage their information from a single place."
+
+#: admin/views/onboarding.php:26
+msgid "Ajouter des joueurs"
+msgstr "Add players"
+
+#: admin/views/onboarding.php:27
+msgid "Enregistrez vos joueurs et associez-les rapidement à leurs équipes."
+msgstr "Register your players and quickly assign them to their teams."
+
+#: admin/views/onboarding.php:33
+msgid "Regroupez vos compétitions en ligues pour structurer vos saisons."
+msgstr "Group your competitions into leagues to structure your seasons."
+
+#: admin/views/onboarding.php:35
+msgid "Gérer les ligues"
+msgstr "Manage leagues"
+
+#: admin/views/onboarding.php:39
+msgid "Planifiez vos matchs, entraînements et événements spéciaux avec toutes les informations utiles."
+msgstr "Schedule your matches, training sessions and special events with all the essential information."
+
+#: admin/views/onboarding.php:41
+msgid "Créer un événement"
+msgstr "Create an event"
+
+#: admin/views/onboarding.php:44
+msgid "Configurer les paramètres"
+msgstr "Configure the settings"
+
+#: admin/views/onboarding.php:45
+msgid "Personnalisez les rappels par e-mail et les couleurs pour refléter l’identité de votre club."
+msgstr "Customize email reminders and colors to reflect your club’s identity."
+
+#: admin/views/onboarding.php:47
+msgid "Ouvrir les paramètres"
+msgstr "Open the settings"
+
+#: admin/views/onboarding.php:50
+msgid "Shortcodes et affichage frontal"
+msgstr "Shortcodes and front-end display"
+
+#: admin/views/onboarding.php:51
+msgid "Intégrez vos équipes et événements sur le site public grâce aux shortcodes disponibles."
+msgstr "Embed your teams and events on the public site with the available shortcodes."
+
+#: admin/views/onboarding.php:53
+msgid "Consulter les shortcodes"
+msgstr "View the shortcodes"
+
+#: admin/views/onboarding.php:59
+msgid "Didacticiel Club Easy Event"
+msgstr "Club Easy Event tutorial"
+
+#: admin/views/onboarding.php:62
+msgid "Suivez ces étapes pour configurer rapidement votre club et vos compétitions."
+msgstr "Follow these steps to quickly configure your club and competitions."
+
+#: admin/views/onboarding.php:63
+msgid "Étape %1$s sur %2$s"
+msgstr "Step %1$s of %2$s"
+
+#: admin/views/onboarding.php:79
+msgid "Suivant"
+msgstr "Next"
+
+#: admin/views/onboarding.php:80
+msgid "Ne plus afficher"
+msgstr "Don’t show again"
+
+#: admin/views/onboarding.php:81
+msgid "Voir la documentation"
+msgstr "View the documentation"
+
+#: admin/js/cee-onboarding.js:30
+msgid "Terminé"
+msgstr "Done"
+
+#: admin/js/cee-onboarding.js:54
+msgid "Impossible d’enregistrer votre préférence. Veuillez réessayer."
+msgstr "Unable to save your preference. Please try again."
