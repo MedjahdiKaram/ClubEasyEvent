@@ -45,42 +45,40 @@ class CEE_Admin {
 	 * @return void
 	 */
 	public function register_menus() {
-		add_menu_page(
-			__( 'Club Easy Event', 'club-easy-event' ),
-			__( 'Club Easy Event', 'club-easy-event' ),
-			'manage_options',
-			'cee_dashboard',
-			array( $this, 'render_dashboard' ),
-			'dashicons-awards',
-			26
-		);
+                add_menu_page(
+                        __( 'Club Easy Event', 'club-easy-event' ),
+                        __( 'Club Easy Event', 'club-easy-event' ),
+                        'manage_options',
+                        'cee_dashboard',
+                        array( $this, 'render_dashboard' ),
+                        'dashicons-awards',
+                        26
+                );
 
-		add_submenu_page(
-			'cee_dashboard',
-			__( 'Événements', 'club-easy-event' ),
-			__( 'Événements', 'club-easy-event' ),
-			'edit_posts',
-			'cee_events_redirect',
-			array( $this, 'redirect_events' )
-		);
+                add_submenu_page(
+                        'cee_dashboard',
+                        __( 'Événements', 'club-easy-event' ),
+                        __( 'Événements', 'club-easy-event' ),
+                        'edit_posts',
+                        'edit.php?post_type=cee_event'
+                );
 
-		add_submenu_page(
-			'cee_dashboard',
-			__( 'Équipes', 'club-easy-event' ),
-			__( 'Équipes', 'club-easy-event' ),
-			'edit_posts',
-			'cee_teams_redirect',
-			array( $this, 'redirect_teams' )
-		);
+                add_submenu_page(
+                        'cee_dashboard',
+                        __( 'Équipes', 'club-easy-event' ),
+                        __( 'Équipes', 'club-easy-event' ),
+                        'edit_posts',
+                        'edit.php?post_type=cee_team'
+                );
 
-		add_submenu_page(
-			'cee_dashboard',
-			__( 'Paramètres', 'club-easy-event' ),
-			__( 'Paramètres', 'club-easy-event' ),
-			'manage_options',
-			'cee_settings',
-			array( $this->settings, 'render_settings_page' )
-		);
+                add_submenu_page(
+                        'cee_dashboard',
+                        __( 'Paramètres', 'club-easy-event' ),
+                        __( 'Paramètres', 'club-easy-event' ),
+                        'manage_options',
+                        'cee_settings',
+                        array( $this->settings, 'render_settings_page' )
+                );
 	}
 
 	/**
@@ -148,23 +146,4 @@ JS;
 		<?php
 	}
 
-	/**
-	 * Redirect submenu to events list.
-	 *
-	 * @return void
-	 */
-	public function redirect_events() {
-		wp_safe_redirect( admin_url( 'edit.php?post_type=cee_event' ) );
-		exit;
-	}
-
-	/**
-	 * Redirect submenu to teams list.
-	 *
-	 * @return void
-	 */
-	public function redirect_teams() {
-		wp_safe_redirect( admin_url( 'edit.php?post_type=cee_team' ) );
-		exit;
-	}
 }

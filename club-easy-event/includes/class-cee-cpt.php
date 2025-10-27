@@ -46,19 +46,20 @@ class CEE_CPT {
 			'all_items'         => __( 'Tous les événements', 'club-easy-event' ),
 		);
 
-		$args = array(
-			'labels'             => $labels,
-			'public'             => true,
-			'has_archive'        => true,
-			'show_in_rest'       => true,
-			'supports'           => array( 'title', 'editor', 'thumbnail' ),
-			'menu_icon'          => 'dashicons-calendar-alt',
-			'menu_position'      => 5,
-			'rewrite'            => array( 'slug' => 'evenements' ),
-			'capability_type'    => array( 'cee_event', 'cee_events' ),
-			'map_meta_cap'       => true,
-			'capabilities'       => $this->get_capabilities( 'cee_event', 'cee_events' ),
-		);
+                $args = array(
+                        'labels'             => $labels,
+                        'public'             => true,
+                        'has_archive'        => true,
+                        'show_in_rest'       => true,
+                        'supports'           => array( 'title', 'editor', 'thumbnail' ),
+                        'menu_icon'          => 'dashicons-calendar-alt',
+                        'menu_position'      => 5,
+                        'show_in_menu'       => false,
+                        'rewrite'            => array( 'slug' => 'evenements' ),
+                        'capability_type'    => array( 'cee_event', 'cee_events' ),
+                        'map_meta_cap'       => true,
+                        'capabilities'       => $this->get_capabilities( 'cee_event', 'cee_events' ),
+                );
 
 		register_post_type( 'cee_event', $args );
 	}
@@ -79,17 +80,18 @@ class CEE_CPT {
 			'view_item'         => __( 'Voir l\'équipe', 'club-easy-event' ),
 		);
 
-		$args = array(
-			'labels'             => $labels,
-			'public'             => true,
-			'has_archive'        => true,
-			'show_in_rest'       => true,
-			'supports'           => array( 'title', 'editor', 'thumbnail' ),
-			'menu_icon'          => 'dashicons-groups',
-			'capability_type'    => array( 'cee_team', 'cee_teams' ),
-			'map_meta_cap'       => true,
-			'capabilities'       => $this->get_capabilities( 'cee_team', 'cee_teams' ),
-		);
+                $args = array(
+                        'labels'             => $labels,
+                        'public'             => true,
+                        'has_archive'        => true,
+                        'show_in_rest'       => true,
+                        'supports'           => array( 'title', 'editor', 'thumbnail' ),
+                        'menu_icon'          => 'dashicons-groups',
+                        'show_in_menu'       => false,
+                        'capability_type'    => array( 'cee_team', 'cee_teams' ),
+                        'map_meta_cap'       => true,
+                        'capabilities'       => $this->get_capabilities( 'cee_team', 'cee_teams' ),
+                );
 
 		register_post_type( 'cee_team', $args );
 	}
