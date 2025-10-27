@@ -22,7 +22,7 @@ msgstr ""
 msgid "Ajouter"
 msgstr ""
 
-#: includes/class-cee-cpt.php:106
+#: includes/class-cee-cpt.php:106 admin/views/onboarding.php:29
 msgid "Ajouter un joueur"
 msgstr ""
 
@@ -513,4 +513,128 @@ msgstr ""
 
 #: admin/views/meta-event.php:46
 msgid "— Équipe externe (voir champ texte) —"
+msgstr ""
+#: includes/class-cee-settings.php:38
+msgid "Tutoriel"
+msgstr ""
+
+#: includes/class-cee-settings.php:39
+msgid "Réactiver le tutoriel"
+msgstr ""
+
+#: includes/class-cee-settings.php:118
+msgid "Veuillez vous connecter pour modifier ce réglage."
+msgstr ""
+
+#: includes/class-cee-settings.php:123
+msgid "Le tutoriel est actuellement actif pour votre compte."
+msgstr ""
+
+#: includes/class-cee-settings.php:126
+msgid "Le tutoriel est actuellement masqué pour votre compte."
+msgstr ""
+
+#: includes/class-cee-settings.php:133
+msgid "Afficher de nouveau le tutoriel lors de ma prochaine visite."
+msgstr ""
+
+#: admin/views/onboarding.php:14
+msgid "Introduction"
+msgstr ""
+
+#: admin/views/onboarding.php:15
+msgid "Découvrez les fonctionnalités essentielles de Club Easy Event pour organiser vos compétitions en ligne."
+msgstr ""
+
+#: admin/views/onboarding.php:17
+msgid "Voir le tableau de bord"
+msgstr ""
+
+#: admin/views/onboarding.php:20
+#: admin/views/onboarding.php:23
+msgid "Créer une équipe"
+msgstr ""
+
+#: admin/views/onboarding.php:21
+msgid "Ajoutez vos équipes et gérez leurs informations depuis un seul endroit."
+msgstr ""
+
+#: admin/views/onboarding.php:26
+msgid "Ajouter des joueurs"
+msgstr ""
+
+#: admin/views/onboarding.php:27
+msgid "Enregistrez vos joueurs et associez-les rapidement à leurs équipes."
+msgstr ""
+
+#: admin/views/onboarding.php:33
+msgid "Regroupez vos compétitions en ligues pour structurer vos saisons."
+msgstr ""
+
+#: admin/views/onboarding.php:35
+msgid "Gérer les ligues"
+msgstr ""
+
+#: admin/views/onboarding.php:39
+msgid "Planifiez vos matchs, entraînements et événements spéciaux avec toutes les informations utiles."
+msgstr ""
+
+#: admin/views/onboarding.php:41
+msgid "Créer un événement"
+msgstr ""
+
+#: admin/views/onboarding.php:44
+msgid "Configurer les paramètres"
+msgstr ""
+
+#: admin/views/onboarding.php:45
+msgid "Personnalisez les rappels par e-mail et les couleurs pour refléter l’identité de votre club."
+msgstr ""
+
+#: admin/views/onboarding.php:47
+msgid "Ouvrir les paramètres"
+msgstr ""
+
+#: admin/views/onboarding.php:50
+msgid "Shortcodes et affichage frontal"
+msgstr ""
+
+#: admin/views/onboarding.php:51
+msgid "Intégrez vos équipes et événements sur le site public grâce aux shortcodes disponibles."
+msgstr ""
+
+#: admin/views/onboarding.php:53
+msgid "Consulter les shortcodes"
+msgstr ""
+
+#: admin/views/onboarding.php:59
+msgid "Didacticiel Club Easy Event"
+msgstr ""
+
+#: admin/views/onboarding.php:62
+msgid "Suivez ces étapes pour configurer rapidement votre club et vos compétitions."
+msgstr ""
+
+#: admin/views/onboarding.php:63
+msgid "Étape %1$s sur %2$s"
+msgstr ""
+
+#: admin/views/onboarding.php:79
+msgid "Suivant"
+msgstr ""
+
+#: admin/views/onboarding.php:80
+msgid "Ne plus afficher"
+msgstr ""
+
+#: admin/views/onboarding.php:81
+msgid "Voir la documentation"
+msgstr ""
+
+#: admin/js/cee-onboarding.js:30
+msgid "Terminé"
+msgstr ""
+
+#: admin/js/cee-onboarding.js:54
+msgid "Impossible d’enregistrer votre préférence. Veuillez réessayer."
 msgstr ""

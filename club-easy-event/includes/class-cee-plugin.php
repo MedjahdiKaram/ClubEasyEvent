@@ -143,12 +143,13 @@ protected $i18n;
 	 * @return void
 	 */
 	private function load_dependencies() {
-		require_once CEE_PLUGIN_DIR . 'includes/class-cee-loader.php';
-		require_once CEE_PLUGIN_DIR . 'includes/class-cee-cpt.php';
-		require_once CEE_PLUGIN_DIR . 'includes/class-cee-taxonomies.php';
-		require_once CEE_PLUGIN_DIR . 'includes/class-cee-meta.php';
-		require_once CEE_PLUGIN_DIR . 'includes/class-cee-admin-columns.php';
-		require_once CEE_PLUGIN_DIR . 'includes/class-cee-settings.php';
+                require_once CEE_PLUGIN_DIR . 'includes/class-cee-loader.php';
+                require_once CEE_PLUGIN_DIR . 'includes/class-cee-cpt.php';
+                require_once CEE_PLUGIN_DIR . 'includes/class-cee-taxonomies.php';
+                require_once CEE_PLUGIN_DIR . 'includes/class-cee-meta.php';
+                require_once CEE_PLUGIN_DIR . 'includes/class-cee-admin-columns.php';
+                require_once CEE_PLUGIN_DIR . 'includes/class-cee-onboarding.php';
+                require_once CEE_PLUGIN_DIR . 'includes/class-cee-settings.php';
 		require_once CEE_PLUGIN_DIR . 'includes/class-cee-shortcodes.php';
 		require_once CEE_PLUGIN_DIR . 'includes/class-cee-ajax.php';
 		require_once CEE_PLUGIN_DIR . 'includes/class-cee-cron.php';
@@ -203,9 +204,11 @@ protected $i18n;
 		$this->loader->add_action( 'created_cee_season', $this->meta, 'save_season_meta', 10, 2 );
 		$this->loader->add_action( 'edited_cee_season', $this->meta, 'save_season_meta', 10, 2 );
 
-		$this->loader->add_action( 'admin_menu', $this->admin, 'register_menus' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_assets' );
-		$this->loader->add_action( 'admin_init', $this->settings, 'register_settings' );
+                $this->loader->add_action( 'admin_menu', $this->admin, 'register_menus' );
+                $this->loader->add_action( 'admin_enqueue_scripts', $this->admin, 'enqueue_assets' );
+                $this->loader->add_action( 'in_admin_header', CEE_Onboarding::class, 'maybe_render' );
+                $this->loader->add_action( 'wp_ajax_cee_onboarding_dismiss', CEE_Onboarding::class, 'ajax_dismiss' );
+                $this->loader->add_action( 'admin_init', $this->settings, 'register_settings' );
 
 		$this->loader->add_filter( 'manage_edit-cee_event_columns', $this->admin_columns, 'add_columns' );
 		$this->loader->add_action( 'manage_cee_event_posts_custom_column', $this->admin_columns, 'render_column', 10, 2 );
