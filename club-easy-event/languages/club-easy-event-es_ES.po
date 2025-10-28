@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Club Easy Event\n"
 "POT-Creation-Date: 2024-05-08 00:00+0000\n"
-"PO-Revision-Date: 2024-05-08 00:00+0000\n"
+"PO-Revision-Date: 2024-06-30 00:00+0000\n"
 "Last-Translator: Club Easy Event Team <translations@clubeasy.test>\n"
 "Language-Team: Spanish <translations@clubeasy.test>\n"
 "MIME-Version: 1.0\n"
@@ -853,3 +853,314 @@ msgstr "Listo"
 #: admin/js/cee-onboarding.js:54
 msgid "Impossible d’enregistrer votre préférence. Veuillez réessayer."
 msgstr "No se pudo guardar tu preferencia. Inténtalo de nuevo."
+#: includes/class-cee-approval.php
+msgid "Vérification & approbation"
+msgstr "Verificación y aprobación"
+
+#: includes/class-cee-approval.php
+msgid "Définissez l’état de validation pour contrôler la publication et la visibilité."
+msgstr "Define el estado de validación para controlar la publicación y la visibilidad."
+
+#: includes/class-cee-approval.php
+msgid "État d’approbation"
+msgstr "Estado de aprobación"
+
+#: includes/class-cee-approval.php
+msgid "Marquer comme approuvé"
+msgstr "Marcar como aprobado"
+
+#: includes/class-cee-approval.php
+msgid "Rejeter"
+msgstr "Rechazar"
+
+#: includes/class-cee-approval.php
+msgid "Ajouter une note pour l’auteur ou l’équipe."
+msgstr "Añade una nota para el autor o el equipo."
+
+#: includes/class-cee-approval.php
+msgid "Les notes sont visibles par les éditeurs disposant des droits appropriés."
+msgstr "Las notas son visibles para los editores con los permisos adecuados."
+
+#: includes/class-cee-approval.php
+msgid "Approuvé par"
+msgstr "Aprobado por"
+
+#: includes/class-cee-approval.php
+msgid "Approbation"
+msgstr "Aprobación"
+
+#: includes/class-cee-approval.php
+msgid "Sélectionnez une équipe à domicile pour ce type d’événement."
+msgstr "Selecciona un equipo local para este tipo de evento."
+
+#: includes/class-cee-approval.php
+msgid "L’équipe à domicile est obligatoire pour ce type d’événement."
+msgstr "El equipo local es obligatorio para este tipo de evento."
+
+#: includes/class-cee-meta.php
+msgid "Aucun lieu n’est défini. Pensez à le préciser pour faciliter l’organisation."
+msgstr "No se ha definido un lugar. Indícalo para facilitar la organización."
+
+#: includes/class-cee-meta.php
+msgid "L’emplacement de l’événement est recommandé pour informer les participants."
+msgstr "Se recomienda indicar la ubicación del evento para informar a los participantes."
+
+#: includes/class-cee-meta.php
+msgid "Choisissez soit une équipe interne, soit un libellé externe pour l’adversaire."
+msgstr "Elige un equipo interno o un nombre externo para el rival."
+
+#: includes/class-cee-meta.php
+msgid "Merci de choisir une seule source pour l’équipe adverse (interne ou externe)."
+msgstr "Selecciona solo una opción para el equipo rival (interno o externo)."
+
+#: includes/class-cee-approval.php
+msgid "Filtrer par état d’approbation"
+msgstr "Filtrar por estado de aprobación"
+
+#: includes/class-cee-approval.php
+msgid "Tous les états d’approbation"
+msgstr "Todos los estados de aprobación"
+
+#: includes/class-cee-approval.php
+msgid "%1$d élément(s) ont été mis à jour vers l’état « %2$s »."
+msgstr "Se actualizaron %1$d elemento(s) al estado «%2$s»."
+
+#: admin/views/meta-event-advanced.php
+msgid "Planning"
+msgstr "Planificación"
+
+#: admin/views/meta-event-advanced.php
+msgid "Utilisez le format ISO AAAA-MM-JJ."
+msgstr "Utiliza el formato ISO AAAA-MM-DD."
+
+#: admin/views/meta-event-advanced.php
+msgid "Format attendu : HH:MM (24h)."
+msgstr "Formato esperado: HH:MM (24h)."
+
+#: admin/views/meta-event-advanced.php
+msgid "Ce choix influence les validations et la communication aux équipes."
+msgstr "Esta elección influye en las validaciones y la comunicación a los equipos."
+
+#: admin/views/meta-event-advanced.php
+msgid "Participants & Lieu"
+msgstr "Participantes y lugar"
+
+#: admin/views/meta-event-advanced.php
+msgid "Points à vérifier"
+msgstr "Puntos a verificar"
+
+#: admin/views/meta-team.php
+msgid "Associez rapidement les joueurs à cette équipe. Utilisez la recherche pour filtrer."
+msgstr "Asigna rápidamente jugadores a este equipo. Usa la búsqueda para filtrar."
+
+#: admin/views/meta-team.php
+msgid "Rechercher un joueur…"
+msgstr "Buscar un jugador…"
+
+#: admin/views/meta-team.php
+msgid "Les changements sont synchronisés automatiquement avec le profil de chaque joueur."
+msgstr "Los cambios se sincronizan automáticamente con el perfil de cada jugador."
+
+#: admin/views/meta-player.php
+msgid "Associez ce joueur aux équipes internes pour faciliter les convocations."
+msgstr "Relaciona este jugador con los equipos internos para facilitar las convocatorias."
+
+#: admin/views/meta-player.php
+msgid "Rechercher une équipe…"
+msgstr "Buscar un equipo…"
+
+#: admin/views/meta-player.php
+msgid "Les équipes sélectionnées seront également mises à jour côté fiche équipe."
+msgstr "Los equipos seleccionados también se actualizarán en la ficha del equipo."
+
+#: admin/js/cee-approval.js
+msgid "Expliquez la raison du rejet…"
+msgstr "Explica el motivo del rechazo…"
+
+#: admin/js/cee-assignment.js
+msgid "Aucun résultat pour cette recherche."
+msgstr "No hay resultados para esta búsqueda."
+
+#: includes/class-cee-settings.php
+msgid "Inscription joueurs"
+msgstr "Registro de jugadores"
+
+#: includes/class-cee-settings.php
+msgid "Équipe par défaut"
+msgstr "Equipo predeterminado"
+
+#: includes/class-cee-settings.php
+msgid "Message de succès"
+msgstr "Mensaje de éxito"
+
+#: includes/class-cee-settings.php
+msgid "Sujet des notifications d’événement"
+msgstr "Asunto de las notificaciones de evento"
+
+#: includes/class-cee-settings.php
+msgid "Modèle d’e-mail de notification"
+msgstr "Plantilla de correo de notificación"
+
+#: includes/class-cee-settings.php
+msgid "Notifications de mise à jour d’événement"
+msgstr "Notificaciones de actualización de eventos"
+
+#: includes/class-cee-settings.php
+msgid "Activation automatique des joueurs"
+msgstr "Activación automática de jugadores"
+
+#: includes/class-cee-settings.php
+msgid "Utilisez {first_name} pour personnaliser le message."
+msgstr "Usa {first_name} para personalizar el mensaje."
+
+#: includes/class-cee-settings.php
+msgid "Balises disponibles : {event_name}, {event_date}, {event_time}, {team_home}, {team_away}, {venue}, {event_link}, {changes_list}"
+msgstr "Etiquetas disponibles: {event_name}, {event_date}, {event_time}, {team_home}, {team_away}, {venue}, {event_link}, {changes_list}"
+
+#: includes/class-cee-settings.php
+msgid "Envoyer un e-mail aux équipes concernées lorsqu’un événement change (date, heure, lieu, équipes)."
+msgstr "Enviar un correo a los equipos afectados cuando cambie un evento (fecha, hora, lugar, equipos)."
+
+#: includes/class-cee-settings.php
+msgid "Activer automatiquement le joueur après l’inscription."
+msgstr "Activar automáticamente al jugador después del registro."
+
+#: includes/class-cee-settings.php
+msgid "Si décoché, les joueurs restent en attente jusqu’à approbation manuelle."
+msgstr "Si se desmarca, los jugadores permanecerán pendientes hasta la aprobación manual."
+
+#: includes/class-cee-notifications.php
+msgid "[%1$s] Mise à jour de l’événement: %2$s"
+msgstr "[%1$s] Actualización del evento: %2$s"
+
+#: includes/class-cee-notifications.php
+msgid "Bonjour,\n\nDes modifications ont été appliquées à l’événement {event_name}."
+msgstr "Hola,\n\nSe han aplicado cambios al evento {event_name}."
+
+#: includes/class-cee-notifications.php
+msgid "Voir les détails complets: {event_link}"
+msgstr "Ver los detalles completos: {event_link}"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Prénom"
+msgstr "Nombre"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Nom"
+msgstr "Apellido"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Adresse e-mail"
+msgstr "Correo electrónico"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Âge"
+msgstr "Edad"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Téléphone"
+msgstr "Teléfono"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Adresse (ligne 1)"
+msgstr "Dirección (línea 1)"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Adresse (ligne 2)"
+msgstr "Dirección (línea 2)"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Ville"
+msgstr "Ciudad"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Code postal"
+msgstr "Código postal"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Pays"
+msgstr "País"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Contact d’urgence - Nom"
+msgstr "Contacto de emergencia - nombre"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Contact d’urgence - Téléphone"
+msgstr "Contacto de emergencia - teléfono"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Informations complémentaires"
+msgstr "Información adicional"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Envoyer ma demande"
+msgstr "Enviar mi solicitud"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "La session de sécurité a expiré. Merci de réessayer."
+msgstr "La sesión de seguridad ha expirado. Inténtalo de nuevo."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "La soumission n’a pas pu être vérifiée."
+msgstr "No se pudo verificar el envío."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci de corriger les champs indiqués."
+msgstr "Corrige los campos indicados."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Une demande a déjà été envoyée récemment. Merci de patienter avant une nouvelle tentative."
+msgstr "Ya se envió una solicitud recientemente. Espera antes de intentarlo de nuevo."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Le prénom est requis."
+msgstr "El nombre es obligatorio."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Le nom est requis."
+msgstr "El apellido es obligatorio."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Veuillez renseigner une adresse e-mail valide."
+msgstr "Introduce una dirección de correo válida."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci d’indiquer un âge valide."
+msgstr "Introduce una edad válida."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Un compte utilise déjà cette adresse e-mail."
+msgstr "Ya existe una cuenta con este correo electrónico."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci d’indiquer un numéro de téléphone valide."
+msgstr "Introduce un número de teléfono válido."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci d’indiquer un numéro de téléphone d’urgence valide."
+msgstr "Introduce un número de teléfono de emergencia válido."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "[{site_name}] Mise à jour de l’événement: {event_name}"
+msgstr "[{site_name}] Actualización del evento: {event_name}"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci %s, votre inscription est en attente"
+msgstr "Gracias %s, tu registro está pendiente"
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Nous avons bien reçu votre inscription. Un responsable va vérifier vos informations et activer votre profil."
+msgstr "Hemos recibido tu registro. Un responsable revisará y activará tu perfil."
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci {first_name}, votre inscription est en attente d’activation par un responsable."
+msgstr "Gracias {first_name}, tu registro está pendiente de activación por un responsable."
+
+#: assets/js/front-modern.js
+msgid "Un responsable légal devra valider cette inscription."
+msgstr "Un responsable legal deberá validar este registro."
+
+#: public/class-cee-frontend.php
+msgid "Pour les joueurs mineurs, un représentant légal doit confirmer la participation."
+msgstr "Para los jugadores menores, un responsable legal debe confirmar la participación."

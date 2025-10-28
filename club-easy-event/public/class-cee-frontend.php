@@ -64,22 +64,27 @@ class CEE_Frontend {
 		$style_handle  = $this->plugin_name . '-public';
 		$script_handle = $this->plugin_name . '-public';
 
-		wp_register_style( $style_handle, CEE_PLUGIN_URL . 'assets/css/public.css', array(), $this->version );
-		wp_register_script( $script_handle, CEE_PLUGIN_URL . 'assets/js/public.js', array( 'jquery' ), $this->version, true );
-		if ( function_exists( 'wp_set_script_translations' ) ) {
-			wp_set_script_translations( $script_handle, 'club-easy-event', dirname( plugin_basename( CEE_PLUGIN_FILE ) ) . '/languages' );
-		}
+                wp_register_style( $style_handle, CEE_PLUGIN_URL . 'assets/css/public.css', array(), $this->version );
+                wp_register_style( $style_handle . '-modern', CEE_PLUGIN_URL . 'assets/css/front-modern.css', array( $style_handle ), $this->version );
+                wp_register_script( $script_handle, CEE_PLUGIN_URL . 'assets/js/public.js', array( 'jquery' ), $this->version, true );
+                wp_register_script( $script_handle . '-modern', CEE_PLUGIN_URL . 'assets/js/front-modern.js', array( 'jquery', 'wp-i18n' ), $this->version, true );
+                if ( function_exists( 'wp_set_script_translations' ) ) {
+                        wp_set_script_translations( $script_handle, 'club-easy-event', dirname( plugin_basename( CEE_PLUGIN_FILE ) ) . '/languages' );
+                        wp_set_script_translations( $script_handle . '-modern', 'club-easy-event', dirname( plugin_basename( CEE_PLUGIN_FILE ) ) . '/languages' );
+                }
 
-		if ( ! $this->should_enqueue ) {
-			global $post;
-			if ( is_a( $post, 'WP_Post' ) ) {
-				$has_schedule = has_shortcode( $post->post_content, 'cee_schedule' );
-				$has_roster   = has_shortcode( $post->post_content, 'cee_roster' );
-				if ( $has_schedule || $has_roster ) {
-					$this->should_enqueue = true;
-				}
-			}
-		}
+                if ( ! $this->should_enqueue ) {
+                        global $post;
+                        if ( is_a( $post, 'WP_Post' ) ) {
+                                $has_schedule = has_shortcode( $post->post_content, 'cee_schedule' );
+                                $has_roster   = has_shortcode( $post->post_content, 'cee_roster' );
+                                $has_event    = has_shortcode( $post->post_content, 'cee_event' );
+                                $has_signup   = has_shortcode( $post->post_content, 'cee_player_signup' );
+                                if ( $has_schedule || $has_roster || $has_event || $has_signup ) {
+                                        $this->should_enqueue = true;
+                                }
+                        }
+                }
 
 		if ( ! $this->should_enqueue ) {
 			return;
@@ -88,13 +93,15 @@ class CEE_Frontend {
 		$settings    = new CEE_Settings();
 		$primary     = $settings->get_primary_color();
 		$inline_css  = ':root{--cee-primary:' . esc_attr( $primary ) . ';}';
-		wp_enqueue_style( $style_handle );
-		wp_add_inline_style( $style_handle, $inline_css );
+                wp_enqueue_style( $style_handle );
+                wp_add_inline_style( $style_handle, $inline_css );
+                wp_enqueue_style( $style_handle . '-modern' );
 
-		wp_enqueue_script( $script_handle );
-		wp_localize_script(
-			$script_handle,
-			'CEE_Public',
+                wp_enqueue_script( $script_handle );
+                wp_enqueue_script( $script_handle . '-modern' );
+                wp_localize_script(
+                        $script_handle,
+                        'CEE_Public',
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
 				'nonce'    => wp_create_nonce( 'cee_rsvp_nonce' ),
@@ -102,10 +109,17 @@ class CEE_Frontend {
 					'success' => __( 'Merci pour votre réponse!', 'club-easy-event' ),
 					'error'   => __( 'Une erreur est survenue. Veuillez réessayer.', 'club-easy-event' ),
 					'loading' => __( 'Traitement…', 'club-easy-event' ),
-				),
-			)
-		);
-	}
+                                ),
+                        )
+                );
+                wp_localize_script(
+                        $script_handle . '-modern',
+                        'CEEFrontModern',
+                        array(
+                                'ageMinorNotice' => __( 'Pour les joueurs mineurs, un représentant légal doit confirmer la participation.', 'club-easy-event' ),
+                        )
+                );
+        }
 
 	/**
 	 * Load plugin templates when theme overrides are absent.

@@ -14,6 +14,33 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class CEE_Meta {
 
+        /**
+         * Assignment manager.
+         *
+         * @var CEE_Assignment|null
+         */
+        protected $assignment;
+
+        /**
+         * Constructor.
+         *
+         * @param CEE_Assignment|null $assignment Assignment manager.
+         */
+        public function __construct( CEE_Assignment $assignment = null ) {
+                $this->assignment = $assignment;
+        }
+
+        /**
+         * Register additional admin hooks.
+         *
+         * @param CEE_Loader $loader Loader instance.
+         *
+         * @return void
+         */
+        public function register_admin_hooks( CEE_Loader $loader ) {
+                $loader->add_action( 'admin_notices', $this, 'render_event_validation_notice' );
+        }
+
 	/**
 	 * Register meta boxes for post types.
 	 *
@@ -42,12 +69,13 @@ class CEE_Meta {
 		$venue_id        = absint( get_post_meta( $post->ID, '_cee_venue_id', true ) );
 		$home_score      = get_post_meta( $post->ID, '_cee_home_score', true );
 		$away_score      = get_post_meta( $post->ID, '_cee_away_score', true );
-		$teams           = $this->get_posts_for_select( 'cee_team' );
-		$venues          = $this->get_posts_for_select( 'cee_venue' );
-		$event_types     = self::get_event_types();
-		$event_type_key  = self::get_event_type_key( $event_type );
-		
-		include CEE_PLUGIN_DIR . 'admin/views/meta-event.php';
+                $teams           = $this->get_posts_for_select( 'cee_team' );
+                $venues          = $this->get_posts_for_select( 'cee_venue' );
+                $event_types     = self::get_event_types();
+                $event_type_key  = self::get_event_type_key( $event_type );
+                $validation_messages = $this->get_event_validation_messages( $post->ID );
+
+                include CEE_PLUGIN_DIR . 'admin/views/meta-event-advanced.php';
 	}
 
 	/**
@@ -57,12 +85,16 @@ class CEE_Meta {
 	 *
 	 * @return void
 	 */
-	public function render_team_meta_box( $post ) {
-		$player_ids = array_map( 'absint', (array) get_post_meta( $post->ID, '_cee_team_players', true ) );
-		$players    = $this->get_posts_for_select( 'cee_player' );
+        public function render_team_meta_box( $post ) {
+                $player_ids = array_map( 'absint', (array) get_post_meta( $post->ID, '_cee_team_players', true ) );
+                if ( $this->assignment ) {
+                        $players = $this->assignment->get_players_for_assignment();
+                } else {
+                        $players = $this->get_posts_for_select( 'cee_player' );
+                }
 
-		include CEE_PLUGIN_DIR . 'admin/views/meta-team.php';
-	}
+                include CEE_PLUGIN_DIR . 'admin/views/meta-team.php';
+        }
 
 	/**
 	 * Render player meta box.
@@ -71,14 +103,20 @@ class CEE_Meta {
 	 *
 	 * @return void
 	 */
-	public function render_player_meta_box( $post ) {
-		$number    = get_post_meta( $post->ID, '_cee_player_number', true );
-		$position  = get_post_meta( $post->ID, '_cee_player_position', true );
-		$user_id   = absint( get_post_meta( $post->ID, '_cee_player_user_id', true ) );
-		$users     = $this->get_users_for_select();
+        public function render_player_meta_box( $post ) {
+                $number    = get_post_meta( $post->ID, '_cee_player_number', true );
+                $position  = get_post_meta( $post->ID, '_cee_player_position', true );
+                $user_id   = absint( get_post_meta( $post->ID, '_cee_player_user_id', true ) );
+                $team_ids  = array_map( 'absint', (array) get_post_meta( $post->ID, '_cee_player_teams', true ) );
+                $users     = $this->get_users_for_select();
+                if ( $this->assignment ) {
+                        $teams = $this->assignment->get_teams_for_assignment();
+                } else {
+                        $teams = $this->get_posts_for_select( 'cee_team' );
+                }
 
-		include CEE_PLUGIN_DIR . 'admin/views/meta-player.php';
-	}
+                include CEE_PLUGIN_DIR . 'admin/views/meta-player.php';
+        }
 
 	/**
 	 * Render venue meta box.
@@ -102,7 +140,7 @@ class CEE_Meta {
 	 *
 	 * @return void
 	 */
-	public function save_event_meta( $post_id, $post ) {
+        public function save_event_meta( $post_id, $post ) {
 		if ( 'cee_event' !== $post->post_type ) {
 			return;
 		}
@@ -142,9 +180,179 @@ class CEE_Meta {
 		$home_score = isset( $_POST['cee_home_score'] ) ? max( 0, absint( $_POST['cee_home_score'] ) ) : '';
 		update_post_meta( $post_id, '_cee_home_score', '' === $home_score ? '' : $home_score );
 
-		$away_score = isset( $_POST['cee_away_score'] ) ? max( 0, absint( $_POST['cee_away_score'] ) ) : '';
-		update_post_meta( $post_id, '_cee_away_score', '' === $away_score ? '' : $away_score );
-	}
+                $away_score = isset( $_POST['cee_away_score'] ) ? max( 0, absint( $_POST['cee_away_score'] ) ) : '';
+                update_post_meta( $post_id, '_cee_away_score', '' === $away_score ? '' : $away_score );
+
+                $validation_data = array(
+                        'event_type'         => $event_type_key,
+                        'home_team_id'       => $home_team_id,
+                        'venue_id'           => $venue_id,
+                        'away_team_select'   => isset( $_POST['cee_away_team_id_select'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_away_team_id_select'] ) ) : '',
+                        'away_team_text'     => isset( $_POST['cee_away_team_id_text'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_away_team_id_text'] ) ) : '',
+                );
+
+                $this->handle_event_validation_feedback( $post_id, $validation_data );
+        }
+
+        /**
+         * Handle validation feedback and persist notices.
+         *
+         * @param int   $post_id Post ID.
+         * @param array $data    Data to validate.
+         *
+         * @return void
+         */
+        protected function handle_event_validation_feedback( $post_id, array $data ) {
+                $messages = $this->validate_event_data( $post_id, $data );
+
+                $transient_key = $this->get_event_validation_transient_key( $post_id );
+                if ( empty( $messages['fields'] ) && empty( $messages['global'] ) ) {
+                        delete_transient( $transient_key );
+                        return;
+                }
+
+                set_transient( $transient_key, $messages, 5 * MINUTE_IN_SECONDS );
+
+                if ( ! empty( $messages['global'] ) ) {
+                        $notice_key = $this->get_event_validation_notice_key();
+                        set_transient( $notice_key, $messages['global'], MINUTE_IN_SECONDS );
+                }
+        }
+
+        /**
+         * Validate event data according to business rules.
+         *
+         * @param int   $post_id Post ID.
+         * @param array $data    Data array.
+         *
+         * @return array
+         */
+        protected function validate_event_data( $post_id, array $data ) {
+                $messages = array(
+                        'fields' => array(),
+                        'global' => array(),
+                );
+
+                $event_type = isset( $data['event_type'] ) ? $data['event_type'] : '';
+                $home_team  = isset( $data['home_team_id'] ) ? absint( $data['home_team_id'] ) : 0;
+                $venue_id   = isset( $data['venue_id'] ) ? absint( $data['venue_id'] ) : 0;
+                $away_select = isset( $data['away_team_select'] ) ? $data['away_team_select'] : '';
+                $away_text   = isset( $data['away_team_text'] ) ? $data['away_team_text'] : '';
+
+                if ( in_array( $event_type, array( 'match', 'training' ), true ) && ! $home_team ) {
+                        $messages['fields']['home_team'][] = array(
+                                'type' => 'error',
+                                'text' => __( 'Sélectionnez une équipe à domicile pour ce type d’événement.', 'club-easy-event' ),
+                        );
+                        $messages['global'][] = __( 'L’équipe à domicile est obligatoire pour ce type d’événement.', 'club-easy-event' );
+                }
+
+                if ( ! $venue_id ) {
+                        $messages['fields']['venue'][] = array(
+                                'type' => 'warning',
+                                'text' => __( 'Aucun lieu n’est défini. Pensez à le préciser pour faciliter l’organisation.', 'club-easy-event' ),
+                        );
+                        $messages['global'][] = __( 'L’emplacement de l’événement est recommandé pour informer les participants.', 'club-easy-event' );
+                }
+
+                if ( $away_select && $away_text ) {
+                        $messages['fields']['away_team'][] = array(
+                                'type' => 'warning',
+                                'text' => __( 'Choisissez soit une équipe interne, soit un libellé externe pour l’adversaire.', 'club-easy-event' ),
+                        );
+                        $messages['global'][] = __( 'Merci de choisir une seule source pour l’équipe adverse (interne ou externe).', 'club-easy-event' );
+                }
+
+                /**
+                 * Filter event validation messages.
+                 *
+                 * @param array $messages Messages array.
+                 * @param int   $post_id  Event ID.
+                 * @param array $data     Raw data.
+                 */
+                return apply_filters( 'cee_event_validation_rules', $messages, $post_id, $data );
+        }
+
+        /**
+         * Retrieve validation messages for rendering in the UI.
+         *
+         * @param int $post_id Post ID.
+         *
+         * @return array
+         */
+        public function get_event_validation_messages( $post_id ) {
+                $transient_key = $this->get_event_validation_transient_key( $post_id );
+                $messages      = get_transient( $transient_key );
+                if ( $messages ) {
+                        delete_transient( $transient_key );
+                }
+
+                if ( ! is_array( $messages ) ) {
+                        $messages = array(
+                                'fields' => array(),
+                                'global' => array(),
+                        );
+                }
+
+                return $messages;
+        }
+
+        /**
+         * Render validation notice after saving.
+         *
+         * @return void
+         */
+        public function render_event_validation_notice() {
+                if ( ! is_admin() ) {
+                        return;
+                }
+
+                $notice_key = $this->get_event_validation_notice_key();
+                $messages   = get_transient( $notice_key );
+                if ( ! $messages ) {
+                        return;
+                }
+
+                delete_transient( $notice_key );
+
+                if ( empty( $messages ) || ! is_array( $messages ) ) {
+                        return;
+                }
+
+                if ( isset( $_GET['post'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only.
+                        $post_id = absint( $_GET['post'] );
+                        if ( $post_id && 'cee_event' !== get_post_type( $post_id ) ) {
+                                return;
+                        }
+                }
+
+                echo '<div class="notice notice-warning"><p>';
+                foreach ( $messages as $message ) {
+                        echo esc_html( $message ) . '<br />';
+                }
+                echo '</p></div>';
+        }
+
+        /**
+         * Get transient key for field-level validation messages.
+         *
+         * @param int $post_id Post ID.
+         *
+         * @return string
+         */
+        protected function get_event_validation_transient_key( $post_id ) {
+                $user = get_current_user_id();
+                return 'cee_event_validation_' . $user . '_' . absint( $post_id );
+        }
+
+        /**
+         * Get transient key for global notices.
+         *
+         * @return string
+         */
+        protected function get_event_validation_notice_key() {
+                return 'cee_event_validation_notice_' . get_current_user_id();
+        }
 
 	/**
 	 * Save team meta.
@@ -170,8 +378,13 @@ class CEE_Meta {
 			}
 		}
 
-		update_post_meta( $post_id, '_cee_team_players', array_filter( $players ) );
-	}
+                $players = array_values( array_unique( array_filter( $players ) ) );
+                if ( $this->assignment ) {
+                        $this->assignment->sync_team_players( $post_id, $players );
+                } else {
+                        update_post_meta( $post_id, '_cee_team_players', $players );
+                }
+        }
 
 	/**
 	 * Save player meta.
@@ -194,10 +407,25 @@ class CEE_Meta {
 		$position = isset( $_POST['cee_player_position'] ) ? sanitize_text_field( wp_unslash( $_POST['cee_player_position'] ) ) : '';
 		$user_id  = isset( $_POST['cee_player_user_id'] ) ? absint( $_POST['cee_player_user_id'] ) : 0;
 
-		update_post_meta( $post_id, '_cee_player_number', '' === $number ? '' : $number );
-		update_post_meta( $post_id, '_cee_player_position', $position );
-		update_post_meta( $post_id, '_cee_player_user_id', $user_id );
-	}
+                $team_ids = array();
+                if ( isset( $_POST['cee_player_teams'] ) && is_array( $_POST['cee_player_teams'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Verified earlier.
+                        foreach ( $_POST['cee_player_teams'] as $team_id ) {
+                                $team_ids[] = absint( $team_id );
+                        }
+                }
+
+                $team_ids = array_values( array_unique( array_filter( $team_ids ) ) );
+
+                update_post_meta( $post_id, '_cee_player_number', '' === $number ? '' : $number );
+                update_post_meta( $post_id, '_cee_player_position', $position );
+                update_post_meta( $post_id, '_cee_player_user_id', $user_id );
+
+                if ( $this->assignment ) {
+                        $this->assignment->sync_player_teams( $post_id, $team_ids );
+                } else {
+                        update_post_meta( $post_id, '_cee_player_teams', $team_ids );
+                }
+        }
 
 	/**
 	 * Save venue meta.

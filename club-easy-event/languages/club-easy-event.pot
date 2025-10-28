@@ -856,3 +856,314 @@ msgstr ""
 #: admin/js/cee-onboarding.js:54
 msgid "Impossible d’enregistrer votre préférence. Veuillez réessayer."
 msgstr ""
+#: includes/class-cee-approval.php
+msgid "Vérification & approbation"
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Définissez l’état de validation pour contrôler la publication et la visibilité."
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "État d’approbation"
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Marquer comme approuvé"
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Rejeter"
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Ajouter une note pour l’auteur ou l’équipe."
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Les notes sont visibles par les éditeurs disposant des droits appropriés."
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Approuvé par"
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Approbation"
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Sélectionnez une équipe à domicile pour ce type d’événement."
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "L’équipe à domicile est obligatoire pour ce type d’événement."
+msgstr ""
+
+#: includes/class-cee-meta.php
+msgid "Aucun lieu n’est défini. Pensez à le préciser pour faciliter l’organisation."
+msgstr ""
+
+#: includes/class-cee-meta.php
+msgid "L’emplacement de l’événement est recommandé pour informer les participants."
+msgstr ""
+
+#: includes/class-cee-meta.php
+msgid "Choisissez soit une équipe interne, soit un libellé externe pour l’adversaire."
+msgstr ""
+
+#: includes/class-cee-meta.php
+msgid "Merci de choisir une seule source pour l’équipe adverse (interne ou externe)."
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Filtrer par état d’approbation"
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "Tous les états d’approbation"
+msgstr ""
+
+#: includes/class-cee-approval.php
+msgid "%1$d élément(s) ont été mis à jour vers l’état « %2$s »."
+msgstr ""
+
+#: admin/views/meta-event-advanced.php
+msgid "Planning"
+msgstr ""
+
+#: admin/views/meta-event-advanced.php
+msgid "Utilisez le format ISO AAAA-MM-JJ."
+msgstr ""
+
+#: admin/views/meta-event-advanced.php
+msgid "Format attendu : HH:MM (24h)."
+msgstr ""
+
+#: admin/views/meta-event-advanced.php
+msgid "Ce choix influence les validations et la communication aux équipes."
+msgstr ""
+
+#: admin/views/meta-event-advanced.php
+msgid "Participants & Lieu"
+msgstr ""
+
+#: admin/views/meta-event-advanced.php
+msgid "Points à vérifier"
+msgstr ""
+
+#: admin/views/meta-team.php
+msgid "Associez rapidement les joueurs à cette équipe. Utilisez la recherche pour filtrer."
+msgstr ""
+
+#: admin/views/meta-team.php
+msgid "Rechercher un joueur…"
+msgstr ""
+
+#: admin/views/meta-team.php
+msgid "Les changements sont synchronisés automatiquement avec le profil de chaque joueur."
+msgstr ""
+
+#: admin/views/meta-player.php
+msgid "Associez ce joueur aux équipes internes pour faciliter les convocations."
+msgstr ""
+
+#: admin/views/meta-player.php
+msgid "Rechercher une équipe…"
+msgstr ""
+
+#: admin/views/meta-player.php
+msgid "Les équipes sélectionnées seront également mises à jour côté fiche équipe."
+msgstr ""
+
+#: admin/js/cee-approval.js
+msgid "Expliquez la raison du rejet…"
+msgstr ""
+
+#: admin/js/cee-assignment.js
+msgid "Aucun résultat pour cette recherche."
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Inscription joueurs"
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Équipe par défaut"
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Message de succès"
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Sujet des notifications d’événement"
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Modèle d’e-mail de notification"
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Notifications de mise à jour d’événement"
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Activation automatique des joueurs"
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Utilisez {first_name} pour personnaliser le message."
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Balises disponibles : {event_name}, {event_date}, {event_time}, {team_home}, {team_away}, {venue}, {event_link}, {changes_list}"
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Envoyer un e-mail aux équipes concernées lorsqu’un événement change (date, heure, lieu, équipes)."
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Activer automatiquement le joueur après l’inscription."
+msgstr ""
+
+#: includes/class-cee-settings.php
+msgid "Si décoché, les joueurs restent en attente jusqu’à approbation manuelle."
+msgstr ""
+
+#: includes/class-cee-notifications.php
+msgid "[%1$s] Mise à jour de l’événement: %2$s"
+msgstr ""
+
+#: includes/class-cee-notifications.php
+msgid "Bonjour,\n\nDes modifications ont été appliquées à l’événement {event_name}."
+msgstr ""
+
+#: includes/class-cee-notifications.php
+msgid "Voir les détails complets: {event_link}"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Prénom"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Nom"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Adresse e-mail"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Âge"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Téléphone"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Adresse (ligne 1)"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Adresse (ligne 2)"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Ville"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Code postal"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Pays"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Contact d’urgence - Nom"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Contact d’urgence - Téléphone"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Informations complémentaires"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Envoyer ma demande"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "La session de sécurité a expiré. Merci de réessayer."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "La soumission n’a pas pu être vérifiée."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci de corriger les champs indiqués."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Une demande a déjà été envoyée récemment. Merci de patienter avant une nouvelle tentative."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Le prénom est requis."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Le nom est requis."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Veuillez renseigner une adresse e-mail valide."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci d’indiquer un âge valide."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Un compte utilise déjà cette adresse e-mail."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci d’indiquer un numéro de téléphone valide."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci d’indiquer un numéro de téléphone d’urgence valide."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "[{site_name}] Mise à jour de l’événement: {event_name}"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci %s, votre inscription est en attente"
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Nous avons bien reçu votre inscription. Un responsable va vérifier vos informations et activer votre profil."
+msgstr ""
+
+#: public/shortcodes/class-cee-shortcode-player-signup.php
+msgid "Merci {first_name}, votre inscription est en attente d’activation par un responsable."
+msgstr ""
+
+#: assets/js/front-modern.js
+msgid "Un responsable légal devra valider cette inscription."
+msgstr ""
+
+#: public/class-cee-frontend.php
+msgid "Pour les joueurs mineurs, un représentant légal doit confirmer la participation."
+msgstr ""
