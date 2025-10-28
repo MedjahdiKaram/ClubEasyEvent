@@ -26,6 +26,7 @@ class CEE_Admin_Columns {
                 foreach ( $columns as $key => $label ) {
                         if ( 'title' === $key ) {
                                 $new_columns['title']       = __( 'Titre', 'club-easy-event' );
+                                $new_columns['cee_approval'] = __( 'Approbation', 'club-easy-event' );
                                 $new_columns['cee_date']    = __( 'Date', 'club-easy-event' );
                                 $new_columns['cee_time']    = __( 'Heure', 'club-easy-event' );
                                 $new_columns['cee_teams']   = __( 'Équipes', 'club-easy-event' );
@@ -40,6 +41,10 @@ class CEE_Admin_Columns {
 
                 if ( ! isset( $new_columns['cee_shortcode'] ) ) {
                         $new_columns['cee_shortcode'] = __( 'Shortcode', 'club-easy-event' );
+                }
+
+                if ( ! isset( $new_columns['cee_approval'] ) ) {
+                        $new_columns['cee_approval'] = __( 'Approbation', 'club-easy-event' );
                 }
 
                 return $new_columns;
@@ -96,6 +101,9 @@ class CEE_Admin_Columns {
                                 $shortcode = sprintf( '[cee_event id="%d"]', absint( $post_id ) );
                                 $this->render_shortcode_column( $shortcode );
                                 break;
+                        case 'cee_approval':
+                                echo wp_kses_post( CEE_Approval::get_state_badge( CEE_Approval::get_state( $post_id ) ) );
+                                break;
                 }
         }
 
@@ -107,6 +115,7 @@ class CEE_Admin_Columns {
          * @return array
          */
         public function add_team_columns( $columns ) {
+                $columns['cee_approval'] = __( 'Approbation', 'club-easy-event' );
                 $columns['cee_shortcode'] = __( 'Shortcode', 'club-easy-event' );
                 return $columns;
         }
@@ -123,6 +132,64 @@ class CEE_Admin_Columns {
                 if ( 'cee_shortcode' === $column ) {
                         $shortcode = sprintf( '[cee_roster team_id="%d"]', absint( $post_id ) );
                         $this->render_shortcode_column( $shortcode );
+                } elseif ( 'cee_approval' === $column ) {
+                        echo wp_kses_post( CEE_Approval::get_state_badge( CEE_Approval::get_state( $post_id ) ) );
+                }
+        }
+
+        /**
+         * Add columns for players.
+         *
+         * @param array $columns Columns.
+         *
+         * @return array
+         */
+        public function add_player_columns( $columns ) {
+                $columns['cee_approval'] = __( 'Approbation', 'club-easy-event' );
+                $columns['cee_shortcode'] = __( 'Shortcode', 'club-easy-event' );
+                return $columns;
+        }
+
+        /**
+         * Render player columns.
+         *
+         * @param string $column  Column name.
+         * @param int    $post_id Post ID.
+         *
+         * @return void
+         */
+        public function render_player_column( $column, $post_id ) {
+                if ( 'cee_shortcode' === $column ) {
+                        $shortcode = sprintf( '[cee_player_card id="%d"]', absint( $post_id ) );
+                        $this->render_shortcode_column( $shortcode );
+                } elseif ( 'cee_approval' === $column ) {
+                        echo wp_kses_post( CEE_Approval::get_state_badge( CEE_Approval::get_state( $post_id ) ) );
+                }
+        }
+
+        /**
+         * Add columns for venues.
+         *
+         * @param array $columns Columns.
+         *
+         * @return array
+         */
+        public function add_venue_columns( $columns ) {
+                $columns['cee_approval'] = __( 'Approbation', 'club-easy-event' );
+                return $columns;
+        }
+
+        /**
+         * Render venue column values.
+         *
+         * @param string $column  Column name.
+         * @param int    $post_id Post ID.
+         *
+         * @return void
+         */
+        public function render_venue_column( $column, $post_id ) {
+                if ( 'cee_approval' === $column ) {
+                        echo wp_kses_post( CEE_Approval::get_state_badge( CEE_Approval::get_state( $post_id ) ) );
                 }
         }
 

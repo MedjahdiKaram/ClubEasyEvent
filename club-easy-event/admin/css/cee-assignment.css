@@ -1,0 +1,49 @@
+.cee-assignment {
+        border: 1px solid #dcdcde;
+        padding: 12px;
+        border-radius: 6px;
+        background: #fff;
+}
+
+.cee-assignment-search {
+        width: 100%;
+        margin-bottom: 10px;
+}
+
+.cee-assignment-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-height: 260px;
+        overflow: auto;
+        border: 1px solid #dcdcde;
+        border-radius: 4px;
+}
+
+.cee-assignment-item {
+        margin: 0;
+        padding: 8px 10px;
+        border-bottom: 1px solid #e5e5e5;
+}
+
+.cee-assignment-item:last-child {
+        border-bottom: none;
+}
+
+.cee-assignment-item label {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        font-size: 13px;
+}
+
+.cee-assignment-empty {
+        margin-top: 8px;
+        font-style: italic;
+        color: #757575;
+}
+
+.cee-assignment .description {
+        margin-top: 8px;
+        color: #555d66;
+}

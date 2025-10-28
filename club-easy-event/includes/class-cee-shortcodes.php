@@ -21,33 +21,113 @@ class CEE_Shortcodes {
 	 */
 	protected $frontend;
 
-	/**
-	 * WooCommerce helper.
-	 *
-	 * @var CEE_WooCommerce
-	 */
-	protected $woocommerce;
+        /**
+         * WooCommerce helper.
+         *
+         * @var CEE_WooCommerce
+         */
+        protected $woocommerce;
 
-	/**
-	 * Constructor.
-	 *
-	 * @param CEE_Frontend    $frontend    Front-end manager.
-	 * @param CEE_WooCommerce $woocommerce WooCommerce helper.
-	 */
-	public function __construct( CEE_Frontend $frontend, CEE_WooCommerce $woocommerce ) {
-		$this->frontend    = $frontend;
-		$this->woocommerce = $woocommerce;
-	}
+        /**
+         * Settings manager.
+         *
+         * @var CEE_Settings
+         */
+        protected $settings;
 
-	/**
-	 * Register shortcodes.
-	 *
-	 * @return void
-	 */
+        /**
+         * Assignment helper.
+         *
+         * @var CEE_Assignment
+         */
+        protected $assignment;
+
+        /**
+         * Player signup handler.
+         *
+         * @var CEE_Shortcode_Player_Signup
+         */
+        protected $player_signup;
+
+        /**
+         * Constructor.
+         *
+         * @param CEE_Frontend    $frontend    Front-end manager.
+         * @param CEE_WooCommerce $woocommerce WooCommerce helper.
+         * @param CEE_Settings    $settings    Settings manager.
+         * @param CEE_Assignment  $assignment  Assignment helper.
+         */
+        public function __construct( CEE_Frontend $frontend, CEE_WooCommerce $woocommerce, CEE_Settings $settings, CEE_Assignment $assignment ) {
+                $this->frontend    = $frontend;
+                $this->woocommerce = $woocommerce;
+                $this->settings    = $settings;
+                $this->assignment  = $assignment;
+                $this->player_signup = new CEE_Shortcode_Player_Signup( $frontend, $settings, $assignment );
+        }
+
+        /**
+         * Register shortcodes.
+         *
+         * @return void
+         */
         public function register_shortcodes() {
                 add_shortcode( 'cee_schedule', array( $this, 'render_schedule' ) );
                 add_shortcode( 'cee_roster', array( $this, 'render_roster' ) );
                 add_shortcode( 'cee_event', array( $this, 'render_event' ) );
+                add_shortcode( 'cee_player_card', array( $this, 'render_player_card' ) );
+                add_shortcode( 'cee_player_signup', array( $this->player_signup, 'render' ) );
+        }
+
+        /**
+         * Render player card.
+         *
+         * @param array $atts Shortcode attributes.
+         *
+         * @return string
+         */
+        public function render_player_card( $atts ) {
+                $atts = shortcode_atts(
+                        array(
+                                'id' => '',
+                        ),
+                        $atts,
+                        'cee_player_card'
+                );
+
+                $player_id = absint( $atts['id'] );
+                if ( ! $player_id || 'cee_player' !== get_post_type( $player_id ) ) {
+                        return '';
+                }
+
+                $this->frontend->mark_assets_needed();
+
+                $name      = get_the_title( $player_id );
+                $position  = get_post_meta( $player_id, '_cee_player_position', true );
+                $number    = get_post_meta( $player_id, '_cee_player_number', true );
+                $teams     = (array) get_post_meta( $player_id, '_cee_player_teams', true );
+                $team_names = array();
+                foreach ( $teams as $team_id ) {
+                        $team_names[] = get_the_title( absint( $team_id ) );
+                }
+
+                ob_start();
+                ?>
+                <div class="cee-player-card">
+                        <div class="cee-player-card__header">
+                                <?php if ( $number ) : ?>
+                                        <span class="cee-player-card__number">#<?php echo esc_html( $number ); ?></span>
+                                <?php endif; ?>
+                                <h3 class="cee-player-card__name"><?php echo esc_html( $name ); ?></h3>
+                        </div>
+                        <?php if ( $position ) : ?>
+                                <p class="cee-player-card__position"><?php echo esc_html( $position ); ?></p>
+                        <?php endif; ?>
+                        <?php if ( ! empty( $team_names ) ) : ?>
+                                <p class="cee-player-card__teams"><?php echo esc_html( implode( ', ', array_filter( $team_names ) ) ); ?></p>
+                        <?php endif; ?>
+                </div>
+                <?php
+                return ob_get_clean();
         }
 
 	/**

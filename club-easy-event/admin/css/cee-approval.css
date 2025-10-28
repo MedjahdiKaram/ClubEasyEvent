@@ -1,0 +1,128 @@
+#cee-approval-box .cee-approval-state-description {
+        margin-bottom: 0.5em;
+        font-size: 13px;
+        color: #555d66;
+}
+
+#cee-approval-box select.widefat,
+#cee-approval-box .cee-approval-note {
+        width: 100%;
+}
+
+#cee_approval_note {
+        margin-top: 8px;
+        resize: vertical;
+        transition: opacity 0.2s ease;
+}
+
+#cee_approval_note:not(.is-active) {
+        opacity: 0.6;
+}
+
+.cee-approval-actions {
+        display: flex;
+        gap: 6px;
+        margin-top: 10px;
+}
+
+.cee-approval-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+}
+
+.cee-approval-draft {
+        background: #f1f1f1;
+        color: #444;
+}
+
+.cee-approval-pending {
+        background: #fff3cd;
+        color: #7f6000;
+}
+
+.cee-approval-approved {
+        background: #d1e7dd;
+        color: #0f5132;
+}
+
+.cee-approval-rejected {
+        background: #f8d7da;
+        color: #842029;
+}
+
+.cee-field-messages {
+        margin: 6px 0 0;
+        padding: 0;
+        list-style: none;
+}
+
+.cee-field-message {
+        margin: 0;
+        font-size: 12px;
+}
+
+.cee-field-message--error {
+        color: #a42834;
+}
+
+.cee-field-message--warning {
+        color: #8a6d3b;
+}
+
+.cee-event-meta-grid {
+        display: grid;
+        gap: 16px;
+}
+
+.cee-event-group {
+        padding: 12px;
+        border: 1px solid #dcdcde;
+        border-radius: 6px;
+        background: #fff;
+}
+
+.cee-event-group h3 {
+        margin-top: 0;
+}
+
+.cee-event-field,
+.cee-event-field-inline {
+        margin-bottom: 12px;
+}
+
+.cee-event-label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 4px;
+}
+
+.cee-event-validation-summary {
+        margin-top: 16px;
+        padding: 12px;
+        border-left: 4px solid #ffb900;
+        background: #fff8e5;
+}
+
+.cee-event-validation-summary ul {
+        margin: 8px 0 0;
+}
+
+.cee-event-validation-summary li {
+        margin: 0 0 4px;
+}
+
+@media (min-width: 782px) {
+        .cee-event-meta-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .cee-event-group--results {
+                grid-column: span 2;
+        }
+}

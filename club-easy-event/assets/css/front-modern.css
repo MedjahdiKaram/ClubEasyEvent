@@ -1,0 +1,203 @@
+.cee-signup-wrapper {
+        background: #ffffff;
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+        max-width: 720px;
+        margin: 0 auto 40px;
+}
+
+.cee-signup-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+}
+
+.cee-signup-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+}
+
+.cee-signup-field--wide {
+        grid-column: 1 / -1;
+}
+
+.cee-signup-field label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+}
+
+.cee-signup-field input,
+.cee-signup-field textarea {
+        width: 100%;
+        padding: 10px 14px;
+        border-radius: 8px;
+        border: 1px solid rgba(15, 23, 42, 0.15);
+        font-size: 16px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cee-signup-field input:focus,
+.cee-signup-field textarea:focus {
+        border-color: var(--cee-primary, #2563eb);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        outline: none;
+}
+
+.cee-required {
+        color: var(--cee-primary, #2563eb);
+}
+
+.cee-signup-submit {
+        align-self: flex-start;
+        padding: 12px 24px;
+        border-radius: 999px;
+        background: var(--cee-primary, #2563eb);
+        color: #fff;
+        border: none;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cee-signup-submit:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+.cee-signup-errors {
+        margin: 8px 0 0;
+        padding-left: 18px;
+        color: #b91c1c;
+        font-size: 14px;
+}
+
+.cee-signup-notice {
+        margin-bottom: 16px;
+        padding: 14px 18px;
+        border-radius: 10px;
+        font-weight: 600;
+}
+
+.cee-signup-notice--success {
+        background: #dcfce7;
+        color: #14532d;
+}
+
+.cee-signup-notice--error {
+        background: #fee2e2;
+        color: #991b1b;
+}
+
+.cee-signup-hp {
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
+        pointer-events: none;
+}
+
+.cee-player-card {
+        max-width: 420px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 16px;
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+        background: #fff;
+        text-align: center;
+}
+
+.cee-player-card__header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 12px;
+}
+
+.cee-player-card__number {
+        display: inline-flex;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--cee-primary, #2563eb);
+        color: #fff;
+        font-weight: 700;
+}
+
+.cee-player-card__name {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+        color: #0f172a;
+}
+
+.cee-player-card__position {
+        margin: 0;
+        color: #475569;
+        font-weight: 600;
+}
+
+.cee-player-card__teams {
+        margin: 8px 0 0;
+        color: #1e293b;
+}
+
+.cee-event-card,
+.cee-roster-wrapper,
+.cee-schedule-wrapper {
+        background: #fff;
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.cee-schedule-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+}
+
+.cee-schedule-item {
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.cee-schedule-item:last-child {
+        border-bottom: none;
+}
+
+.cee-event-type {
+        display: inline-block;
+        padding: 2px 10px;
+        border-radius: 999px;
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--cee-primary, #2563eb);
+        font-size: 13px;
+        margin-left: 8px;
+}
+
+.cee-schedule-event-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #0f172a;
+}
+
+.cee-signup-age-note {
+        margin-top: 4px;
+        color: #b45309;
+        font-size: 13px;
+}
+
+@media (max-width: 599px) {
+        .cee-signup-wrapper {
+                padding: 16px;
+        }
+}

@@ -178,6 +178,18 @@ class CEE_Admin {
                         wp_enqueue_style( 'cee-datetime-enhance', plugins_url( 'admin/css/datetime-enhance.css', CEE_PLUGIN_FILE ), array(), CEE_VERSION );
                 }
 
+                if ( in_array( $post_type, array( 'cee_event', 'cee_team', 'cee_player', 'cee_venue' ), true ) && in_array( $screen->base, array( 'post', 'post-new', 'edit' ), true ) ) {
+                        wp_enqueue_style( 'cee-approval', plugins_url( 'admin/css/cee-approval.css', CEE_PLUGIN_FILE ), array(), CEE_VERSION );
+                        wp_enqueue_script( 'cee-approval', plugins_url( 'admin/js/cee-approval.js', CEE_PLUGIN_FILE ), array( 'jquery', 'wp-i18n' ), CEE_VERSION, true );
+                        wp_set_script_translations( 'cee-approval', 'club-easy-event', plugin_dir_path( CEE_PLUGIN_FILE ) . 'languages' );
+                }
+
+                if ( in_array( $post_type, array( 'cee_team', 'cee_player' ), true ) && in_array( $screen->base, array( 'post', 'post-new' ), true ) ) {
+                        wp_enqueue_style( 'cee-assignment', plugins_url( 'admin/css/cee-assignment.css', CEE_PLUGIN_FILE ), array(), CEE_VERSION );
+                        wp_enqueue_script( 'cee-assignment', plugins_url( 'admin/js/cee-assignment.js', CEE_PLUGIN_FILE ), array( 'jquery', 'wp-i18n' ), CEE_VERSION, true );
+                        wp_set_script_translations( 'cee-assignment', 'club-easy-event', plugin_dir_path( CEE_PLUGIN_FILE ) . 'languages' );
+                }
+
                 if ( 'cee_event' === $post_type && 'edit' === $screen->base ) {
                         $this->enqueue_shortcode_assets();
                         $this->enqueue_bulk_shift_assets();
