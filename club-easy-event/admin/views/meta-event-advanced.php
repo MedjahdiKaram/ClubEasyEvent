@@ -90,6 +90,33 @@ $render_messages = static function( $field_key ) use ( $validation_messages ) {
                                         <option value="<?php echo esc_attr( $id ); ?>" <?php selected( $venue_id, $id ); ?>><?php echo esc_html( $label ); ?></option>
                                 <?php endforeach; ?>
                         </select>
+                        <?php
+                        $create_venue_url   = admin_url( 'post-new.php?post_type=cee_venue' );
+                        $should_show_notice = isset( $venues_notice ) ? (bool) $venues_notice : empty( $venues );
+                        if ( $should_show_notice ) :
+                                printf(
+                                        '<div class="notice notice-warning inline cee-venue-notice">%s</div>',
+                                        wp_kses(
+                                                sprintf(
+                                                        /* translators: %s: link to create a new venue */
+                                                        __( 'Aucun lieu approuvé trouvé. %s', 'club-easy-event' ),
+                                                        sprintf(
+                                                                '<a href="%1$s" target="_blank" rel="noopener noreferrer">%2$s</a>',
+                                                                esc_url( $create_venue_url ),
+                                                                esc_html__( 'Ajouter un lieu', 'club-easy-event' )
+                                                        )
+                                                ),
+                                                array(
+                                                        'a' => array(
+                                                                'href'   => true,
+                                                                'target' => true,
+                                                                'rel'    => true,
+                                                        ),
+                                                )
+                                        )
+                                );
+                        endif;
+                        ?>
                         <?php $render_messages( 'venue' ); ?>
                 </div>
         </section>

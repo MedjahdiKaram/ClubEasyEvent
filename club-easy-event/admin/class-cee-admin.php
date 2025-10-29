@@ -55,10 +55,12 @@ class CEE_Admin {
          * @return void
          */
         public function register_menus() {
+                $dashboard_capability = current_user_can( 'manage_options' ) ? 'manage_options' : 'edit_cee_events';
+
                 add_menu_page(
                         __( 'Club Easy Event', 'club-easy-event' ),
                         __( 'Club Easy Event', 'club-easy-event' ),
-                        'manage_options',
+                        $dashboard_capability,
                         'cee_dashboard',
                         array( $this, 'render_dashboard' ),
                         'dashicons-awards',
@@ -161,6 +163,11 @@ class CEE_Admin {
                                         'nonce'    => wp_create_nonce( 'cee_onboarding_nonce' ),
                                 )
                         );
+                }
+
+                if ( 'toplevel_page_cee_dashboard' === $screen->id ) {
+                        wp_enqueue_style( 'cee-dashboard', plugins_url( 'admin/css/cee-dashboard.css', CEE_PLUGIN_FILE ), array(), CEE_VERSION );
+                        wp_enqueue_script( 'cee-dashboard', plugins_url( 'admin/js/cee-dashboard.js', CEE_PLUGIN_FILE ), array( 'jquery' ), CEE_VERSION, true );
                 }
 
                 if ( in_array( $hook, array( 'club-easy-event_page_cee_settings' ), true ) ) {
@@ -330,15 +337,159 @@ JS;
          * @return void
          */
         public function render_dashboard() {
-                if ( ! current_user_can( 'manage_options' ) ) {
+                if ( ! current_user_can( 'edit_cee_events' ) && ! current_user_can( 'manage_options' ) ) {
                         wp_die( esc_html__( 'Vous n’avez pas la permission d’accéder à cette page.', 'club-easy-event' ) );
                 }
-                ?>
-                <div class="wrap">
-                <h1><?php esc_html_e( 'Bienvenue dans Club Easy Event', 'club-easy-event' ); ?></h1>
-                <p><?php esc_html_e( 'Utilisez le menu pour gérer vos événements, équipes, joueurs et lieux. Configurez les rappels par e-mail et la couleur principale dans les paramètres.', 'club-easy-event' ); ?></p>
-                </div>
-                <?php
+
+                $team_counts    = wp_count_posts( 'cee_team' );
+                $player_counts  = wp_count_posts( 'cee_player' );
+                $now                = current_time( 'timestamp' );
+                $today              = gmdate( 'Y-m-d', $now );
+                $upcoming_range_end = gmdate( 'Y-m-d', $now + WEEK_IN_SECONDS );
+                $dashboard_kpis = array(
+                        'teams'    => isset( $team_counts->publish ) ? (int) $team_counts->publish : 0,
+                        'players'  => isset( $player_counts->publish ) ? (int) $player_counts->publish : 0,
+                        'upcoming' => 0,
+                        'pending'  => 0,
+                );
+
+                $upcoming_query_args = array(
+                        'post_type'      => 'cee_event',
+                        'post_status'    => 'publish',
+                        'posts_per_page' => 5,
+                        'fields'         => 'ids',
+                        'suppress_filters' => false,
+                        'meta_key'       => '_cee_event_date',
+                        'orderby'        => array(
+                                'meta_value' => 'ASC',
+                                'date'       => 'ASC',
+                        ),
+                        'meta_query'     => array(
+                                array(
+                                        'key'     => '_cee_event_date',
+                                        'value'   => array( $today, $upcoming_range_end ),
+                                        'compare' => 'BETWEEN',
+                                        'type'    => 'DATE',
+                                ),
+                        ),
+                        'no_found_rows'  => false,
+                );
+
+                $upcoming_query  = new WP_Query( $upcoming_query_args );
+                $upcoming_events = array_map( array( $this, 'prepare_event_summary' ), $upcoming_query->posts );
+                $dashboard_kpis['upcoming'] = (int) $upcoming_query->found_posts;
+
+                $pending_query_args = array(
+                        'post_type'      => 'cee_event',
+                        'post_status'    => array( 'publish', 'pending', 'draft', 'future' ),
+                        'posts_per_page' => 5,
+                        'fields'         => 'ids',
+                        'suppress_filters' => false,
+                        'meta_key'       => '_cee_event_date',
+                        'orderby'        => array(
+                                'meta_value' => 'ASC',
+                                'date'       => 'DESC',
+                        ),
+                        'meta_query'     => array(
+                                array(
+                                        'key'     => '_cee_approval_state',
+                                        'value'   => 'pending',
+                                        'compare' => '=',
+                                ),
+                        ),
+                        'no_found_rows'  => false,
+                );
+
+                $pending_query  = new WP_Query( $pending_query_args );
+                $pending_events = array_map( array( $this, 'prepare_event_summary' ), $pending_query->posts );
+                $dashboard_kpis['pending'] = (int) $pending_query->found_posts;
+
+                $recent_query_args = array(
+                        'post_type'      => 'cee_event',
+                        'post_status'    => array( 'publish', 'pending', 'draft', 'future' ),
+                        'posts_per_page' => 5,
+                        'fields'         => 'ids',
+                        'suppress_filters' => false,
+                        'orderby'        => 'modified',
+                        'order'          => 'DESC',
+                        'no_found_rows'  => true,
+                );
+
+                $recent_query  = new WP_Query( $recent_query_args );
+                $recent_events = array_map( array( $this, 'prepare_event_summary' ), $recent_query->posts );
+
+                $quick_actions = array(
+                        array(
+                                'label' => __( 'Créer un événement', 'club-easy-event' ),
+                                'url'   => admin_url( 'post-new.php?post_type=cee_event' ),
+                        ),
+                        array(
+                                'label' => __( 'Créer une équipe', 'club-easy-event' ),
+                                'url'   => admin_url( 'post-new.php?post_type=cee_team' ),
+                        ),
+                        array(
+                                'label' => __( 'Créer un joueur', 'club-easy-event' ),
+                                'url'   => admin_url( 'post-new.php?post_type=cee_player' ),
+                        ),
+                        array(
+                                'label' => __( 'Créer un lieu', 'club-easy-event' ),
+                                'url'   => admin_url( 'post-new.php?post_type=cee_venue' ),
+                        ),
+                );
+
+                $can_moderate = current_user_can( 'cee_approve_content' ) || current_user_can( 'manage_options' );
+
+                include CEE_PLUGIN_DIR . 'admin/views/dashboard.php';
+        }
+
+        /**
+         * Prepare event data for dashboard presentation.
+         *
+         * @param int $event_id Event ID.
+         *
+         * @return array
+         */
+        private function prepare_event_summary( $event_id ) {
+                $event_id       = absint( $event_id );
+                $event_date     = get_post_meta( $event_id, '_cee_event_date', true );
+                $event_time     = get_post_meta( $event_id, '_cee_event_time', true );
+                $home_team_id   = absint( get_post_meta( $event_id, '_cee_home_team_id', true ) );
+                $away_team_meta = get_post_meta( $event_id, '_cee_away_team_id', true );
+                $venue_id       = absint( get_post_meta( $event_id, '_cee_venue_id', true ) );
+
+                $home_team_name = $home_team_id ? get_the_title( $home_team_id ) : '';
+                $away_team_name = '';
+                if ( is_numeric( $away_team_meta ) && $away_team_meta ) {
+                        $away_team_name = get_the_title( (int) $away_team_meta );
+                } elseif ( is_string( $away_team_meta ) ) {
+                        $away_team_name = $away_team_meta;
+                }
+
+                $venue_name      = $venue_id ? get_the_title( $venue_id ) : '';
+                $approval_state  = class_exists( 'CEE_Approval' ) ? CEE_Approval::get_state( $event_id ) : '';
+                $states          = class_exists( 'CEE_Approval' ) ? CEE_Approval::get_states() : array();
+                $approval_label  = isset( $states[ $approval_state ] ) ? $states[ $approval_state ] : $approval_state;
+                $status          = get_post_status( $event_id );
+                $status_object   = $status ? get_post_status_object( $status ) : false;
+                $status_label    = $status_object ? $status_object->label : $status;
+                $edit_link       = get_edit_post_link( $event_id );
+
+                return array(
+                        'id'             => $event_id,
+                        'title'          => get_the_title( $event_id ),
+                        'edit_link'      => $edit_link ? $edit_link : '',
+                        'date'           => $event_date,
+                        'time'           => $event_time,
+                        'home_team'      => $home_team_name,
+                        'away_team'      => $away_team_name,
+                        'venue'          => $venue_name,
+                        'approval_state' => $approval_state,
+                        'approval_label' => $approval_label,
+                        'status'         => $status,
+                        'status_label'   => $status_label,
+                        'modified'       => get_post_field( 'post_modified', $event_id ),
+                        'modified_gmt'   => get_post_field( 'post_modified_gmt', $event_id ),
+                );
         }
 
         /**

@@ -1164,3 +1164,123 @@ msgstr "Un responsable legal deberá validar este registro."
 #: public/class-cee-frontend.php
 msgid "Pour les joueurs mineurs, un représentant légal doit confirmer la participation."
 msgstr "Para los jugadores menores, un responsable legal debe confirmar la participación."
+#: admin/views/meta-event.php:75 admin/views/meta-event-advanced.php:102
+msgid "Aucun lieu approuvé trouvé. %s"
+msgstr "No se encontró ningún lugar aprobado. %s"
+
+#: admin/views/dashboard.php:27
+msgid "À planifier"
+msgstr "Por programar"
+
+#: admin/views/dashboard.php:41
+msgid "Date de modification inconnue"
+msgstr "Fecha de modificación desconocida"
+
+#: admin/views/dashboard.php:52
+msgid "%1$s vs %2$s"
+msgstr "%1$s vs %2$s"
+
+#: admin/views/dashboard.php:55
+msgid "Accueil : %s"
+msgstr "Local: %s"
+
+#: admin/views/dashboard.php:58
+msgid "Adversaire : %s"
+msgstr "Visitante: %s"
+
+#: admin/views/dashboard.php:69
+msgid "Tableau de bord — Club Easy Event"
+msgstr "Panel — Club Easy Event"
+
+#: admin/views/dashboard.php:70
+msgid "Suivez vos chiffres clés, vos prochains événements et les validations en attente."
+msgstr "Sigue tus métricas clave, los próximos eventos y las aprobaciones pendientes."
+
+#: admin/views/dashboard.php:76
+msgid "Gérer les équipes"
+msgstr "Gestionar equipos"
+
+#: admin/views/dashboard.php:81
+msgid "Gérer les joueurs"
+msgstr "Gestionar jugadores"
+
+#: admin/views/dashboard.php:84
+msgid "Évènements à venir (7 jours)"
+msgstr "Próximos eventos (7 días)"
+
+#: admin/views/dashboard.php:86
+msgid "Voir tous les évènements"
+msgstr "Ver todos los eventos"
+
+#: admin/views/dashboard.php:89
+msgid "Évènements à valider"
+msgstr "Eventos por aprobar"
+
+#: admin/views/dashboard.php:91
+msgid "Filtrer les évènements en attente"
+msgstr "Filtrar eventos pendientes"
+
+#: admin/views/dashboard.php:99
+msgid "Prochains évènements"
+msgstr "Próximos eventos"
+
+#: admin/views/dashboard.php:101
+msgid "%1$s → %2$s"
+msgstr "%1$s → %2$s"
+
+#: admin/views/dashboard.php:104 admin/views/dashboard.php:152 admin/views/dashboard.php:199 admin/views/dashboard.php:219
+msgid "Basculer la section"
+msgstr "Alternar sección"
+
+#: admin/views/dashboard.php:115 admin/views/dashboard.php:162 admin/views/dashboard.php:228
+msgid "Évènement sans titre"
+msgstr "Evento sin título"
+
+#: admin/views/dashboard.php:141
+msgid "Aucun évènement à venir dans les 7 prochains jours."
+msgstr "No hay eventos programados en los próximos 7 días."
+
+#: admin/views/dashboard.php:149
+msgid "À valider"
+msgstr "Por revisar"
+
+#: admin/views/dashboard.php:150
+msgid "Évènements en attente d’approbation."
+msgstr "Eventos en espera de aprobación."
+
+#: admin/views/dashboard.php:186
+msgid "Aucun évènement n’attend de validation pour le moment."
+msgstr "No hay eventos esperando aprobación en este momento."
+
+#: admin/views/dashboard.php:188
+msgid "Gérer les validations"
+msgstr "Gestionar aprobaciones"
+
+#: admin/views/dashboard.php:197
+msgid "Actions rapides"
+msgstr "Acciones rápidas"
+
+#: admin/views/dashboard.php:216
+msgid "Dernières modifications"
+msgstr "Últimas modificaciones"
+
+#: admin/views/dashboard.php:217
+msgid "Suivez les mises à jour récentes des évènements."
+msgstr "Sigue las actualizaciones recientes de los eventos."
+
+#: admin/views/dashboard.php:239
+msgid "Statut inconnu"
+msgstr "Estado desconocido"
+
+#: admin/views/dashboard.php:246
+msgid "Aucune modification récente détectée."
+msgstr "No se detectaron actualizaciones recientes."
+
+#: admin/class-cee-admin.php:423
+msgid "Créer un joueur"
+msgstr "Crear un jugador"
+
+#: admin/class-cee-admin.php:435
+msgid "Créer un lieu"
+msgstr "Crear un lugar"
+

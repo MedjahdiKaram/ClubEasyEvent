@@ -220,6 +220,7 @@ protected $i18n;
 	 * @return void
 	 */
         private function define_admin_hooks() {
+                $this->loader->add_action( 'plugins_loaded', $this->roles, 'maybe_upgrade_roles' );
                 $this->loader->add_action( 'init', $this->roles, 'register_caps' );
                 $this->loader->add_action( 'init', $this->cpt, 'register_post_types' );
                 $this->loader->add_action( 'init', $this->taxonomies, 'register_taxonomies' );

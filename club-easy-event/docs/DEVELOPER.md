@@ -26,9 +26,10 @@
 - `cee_player_team_assignment_changed( $player_id, $team_ids )` – Notifié lors d’une mise à jour des équipes d’un joueur.
 - `cee_player_signup_notification_recipients( $emails, $player_id, $user_id, $values )` & `cee_player_signup_send_confirmation( $send, $player_id, $user_id, $values )` – Contrôler les e-mails liés au formulaire.
 - `cee_approval_post_types( $post_types )` – Ajouter/retirer des types de contenus gérés par l’approbation.
+- `cee_venue_dropdown_query_args( $args )` – Modifier les paramètres de la requête des lieux approuvés dans l’éditeur d’événement.
 
 ## Scripts & i18n
-- Scripts admin : `cee-datetime-enhance`, `cee-roles-manager`, `cee-onboarding`, `cee-approval`, `cee-assignment` (tous déclarés avec `wp_set_script_translations`).
+- Scripts admin : `cee-datetime-enhance`, `cee-roles-manager`, `cee-onboarding`, `cee-approval`, `cee-assignment`, `cee-dashboard` (tous déclarés avec `wp_set_script_translations`).
 - Scripts front : `club-easy-event-public` et `club-easy-event-public-modern` (utilisent `wp_set_script_translations` + `wp.i18n`).
 - Ajouter systématiquement les chaînes PHP via `__()`, `_e()`, `esc_html__()`… et déclarer les chaînes JS via `wp_set_script_translations` ou `wp.i18n.__`.
 

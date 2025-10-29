@@ -1167,3 +1167,122 @@ msgstr ""
 #: public/class-cee-frontend.php
 msgid "Pour les joueurs mineurs, un représentant légal doit confirmer la participation."
 msgstr ""
+#: admin/views/meta-event.php:75 admin/views/meta-event-advanced.php:102
+msgid "Aucun lieu approuvé trouvé. %s"
+msgstr ""
+
+#: admin/views/dashboard.php:27
+msgid "À planifier"
+msgstr ""
+
+#: admin/views/dashboard.php:41
+msgid "Date de modification inconnue"
+msgstr ""
+
+#: admin/views/dashboard.php:52
+msgid "%1$s vs %2$s"
+msgstr ""
+
+#: admin/views/dashboard.php:55
+msgid "Accueil : %s"
+msgstr ""
+
+#: admin/views/dashboard.php:58
+msgid "Adversaire : %s"
+msgstr ""
+
+#: admin/views/dashboard.php:69
+msgid "Tableau de bord — Club Easy Event"
+msgstr ""
+
+#: admin/views/dashboard.php:70
+msgid "Suivez vos chiffres clés, vos prochains événements et les validations en attente."
+msgstr ""
+
+#: admin/views/dashboard.php:76
+msgid "Gérer les équipes"
+msgstr ""
+
+#: admin/views/dashboard.php:81
+msgid "Gérer les joueurs"
+msgstr ""
+
+#: admin/views/dashboard.php:84
+msgid "Évènements à venir (7 jours)"
+msgstr ""
+
+#: admin/views/dashboard.php:86
+msgid "Voir tous les évènements"
+msgstr ""
+
+#: admin/views/dashboard.php:89
+msgid "Évènements à valider"
+msgstr ""
+
+#: admin/views/dashboard.php:91
+msgid "Filtrer les évènements en attente"
+msgstr ""
+
+#: admin/views/dashboard.php:99
+msgid "Prochains évènements"
+msgstr ""
+
+#: admin/views/dashboard.php:101
+msgid "%1$s → %2$s"
+msgstr ""
+
+#: admin/views/dashboard.php:104 admin/views/dashboard.php:152 admin/views/dashboard.php:199 admin/views/dashboard.php:219
+msgid "Basculer la section"
+msgstr ""
+
+#: admin/views/dashboard.php:115 admin/views/dashboard.php:162 admin/views/dashboard.php:228
+msgid "Évènement sans titre"
+msgstr ""
+
+#: admin/views/dashboard.php:141
+msgid "Aucun évènement à venir dans les 7 prochains jours."
+msgstr ""
+
+#: admin/views/dashboard.php:149
+msgid "À valider"
+msgstr ""
+
+#: admin/views/dashboard.php:150
+msgid "Évènements en attente d’approbation."
+msgstr ""
+
+#: admin/views/dashboard.php:186
+msgid "Aucun évènement n’attend de validation pour le moment."
+msgstr ""
+
+#: admin/views/dashboard.php:188
+msgid "Gérer les validations"
+msgstr ""
+
+#: admin/views/dashboard.php:197
+msgid "Actions rapides"
+msgstr ""
+
+#: admin/views/dashboard.php:216
+msgid "Dernières modifications"
+msgstr ""
+
+#: admin/views/dashboard.php:217
+msgid "Suivez les mises à jour récentes des évènements."
+msgstr ""
+
+#: admin/views/dashboard.php:239
+msgid "Statut inconnu"
+msgstr ""
+
+#: admin/views/dashboard.php:246
+msgid "Aucune modification récente détectée."
+msgstr ""
+
+#: admin/class-cee-admin.php:423
+msgid "Créer un joueur"
+msgstr ""
+
+#: admin/class-cee-admin.php:435
+msgid "Créer un lieu"
+msgstr ""

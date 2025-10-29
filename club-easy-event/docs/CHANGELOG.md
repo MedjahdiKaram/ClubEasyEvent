@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0
+- Nouveau tableau de bord administrateur : indicateurs clés, prochains événements, validations en attente, actions rapides et dernières modifications (panneaux repliables).
+- Liste des lieux d’un événement limitée aux contenus approuvés et publiés, avec notice et lien de création lorsqu’aucun lieu n’est disponible.
+- Rôle `team_manager` et profils éditoriaux : ajout automatique des capacités manquantes pour éditer/supprimer les équipes publiées/privées.
+- Traductions FR/EN/ES et documentation (admin, dev, i18n, readme) mises à jour.
+
 ## 1.2.0
 - Workflow d’approbation complet sur événements, équipes, joueurs et lieux (états, filtres, actions groupées, badges).
 - Nouvelle méta-box événement regroupée avec validations contextuelles et messages d’avertissement.
