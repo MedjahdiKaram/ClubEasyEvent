@@ -1,0 +1,231 @@
+.cee-dashboard {
+        margin-top: 1.5rem;
+}
+
+.cee-dashboard__intro {
+        max-width: 48rem;
+        color: #555d66;
+        margin-bottom: 1.5rem;
+}
+
+.cee-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-bottom: 2rem;
+}
+
+.cee-card {
+        background: #fff;
+        border: 1px solid #ccd0d4;
+        border-radius: 8px;
+        padding: 1.25rem;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.cee-card--kpi {
+        text-align: left;
+}
+
+.cee-card__title {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1d2327;
+}
+
+.cee-card__metric {
+        margin: 0.5rem 0 0;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #0073aa;
+}
+
+.cee-card__hint {
+        margin: 0.5rem 0 0;
+}
+
+.cee-card__hint a {
+        color: #1d2327;
+        text-decoration: none;
+}
+
+.cee-card__hint a:hover,
+.cee-card__hint a:focus {
+        color: #0073aa;
+        text-decoration: underline;
+}
+
+.cee-dashboard__layout {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+        gap: 1.5rem;
+}
+
+.cee-dashboard__column {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+}
+
+.cee-card__header {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 0.75rem;
+}
+
+.cee-card__subtitle {
+        margin: 0.5rem 0 0;
+        color: #555d66;
+}
+
+.cee-card__body {
+        display: block;
+        margin-top: 1rem;
+}
+
+.cee-card.is-collapsed .cee-card__body {
+        display: none;
+}
+
+.cee-card__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+}
+
+.cee-card__item {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+}
+
+.cee-card__item-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+}
+
+.cee-card__item-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1d2327;
+}
+
+.cee-card__item-title:hover,
+.cee-card__item-title:focus {
+        color: #0073aa;
+        text-decoration: underline;
+}
+
+.cee-card__badge .cee-approval-badge,
+.cee-card__badge--pending {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+        font-weight: 600;
+        background: #f0f6fc;
+        color: #1d2327;
+}
+
+.cee-card__badge--pending {
+        background: #fef3c7;
+        color: #92400e;
+}
+
+.cee-card__badge {
+        display: inline-flex;
+        align-items: center;
+}
+
+.cee-card__toggle {
+        border: 1px solid #c3c4c7;
+        background: #fff;
+        border-radius: 999px;
+        color: #1d2327;
+        padding: 0.25rem 0.5rem;
+        cursor: pointer;
+        font-size: 0.875rem;
+        line-height: 1;
+}
+
+.cee-card__toggle:hover,
+.cee-card__toggle:focus {
+        color: #0073aa;
+        border-color: #0073aa;
+        box-shadow: 0 0 0 1px rgba(0, 115, 170, 0.2);
+}
+
+.cee-card__toggle-icon {
+        display: inline-block;
+        font-size: 1.25rem;
+        line-height: 1;
+}
+
+.cee-card__meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        color: #555d66;
+        font-size: 0.875rem;
+}
+
+.cee-card__meta-item::before {
+        content: '\2022';
+        margin-right: 0.35rem;
+        color: #c3c4c7;
+}
+
+.cee-card__meta-item:first-child::before {
+        content: '';
+        margin-right: 0;
+}
+
+.cee-card__empty {
+        margin: 0;
+        padding: 0.5rem 0;
+        color: #555d66;
+}
+
+.cee-card__footer {
+        margin-top: 1rem;
+}
+
+.cee-actions {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+}
+
+.cee-actions__item .button {
+        width: 100%;
+        text-align: center;
+}
+
+.cee-venue-notice {
+        margin-top: 0.75rem;
+        display: block;
+        padding: 0.75rem 1rem;
+}
+
+@media (max-width: 960px) {
+        .cee-dashboard__layout {
+                grid-template-columns: 1fr;
+        }
+}
+
+@media (prefers-reduced-motion: reduce) {
+        .cee-card {
+                transition: none;
+        }
+}

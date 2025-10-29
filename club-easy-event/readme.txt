@@ -1,10 +1,10 @@
 === Club Easy Event ===
 Contributors: your-name
-Tags: sports club, events, teams, roster, schedule, approval, notifications, signup, woocommerce
+Tags: sports club, events, teams, roster, schedule, approval, notifications, signup, woocommerce, dashboard, venue approval, manager view
 Requires at least: 5.7
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,12 +16,14 @@ Organisez le calendrier sportif de votre club sans friction. Club Easy Event cen
 **Pourquoi choisir Club Easy Event ?**
 
 * Workflow de validation/approbation complet avec badges, filtres et actions groupées.
+* Nouveau tableau de bord administrateur avec indicateurs, prochains événements, validations en attente et actions rapides repliables.
 * Formulaire d’inscription joueurs moderne (shortcode) qui crée automatiquement l’utilisateur et la fiche joueur.
 * Notifications e-mail lorsque les événements changent (date, heure, lieu, équipes) avec modèle personnalisable.
 * Gestion fine des équipes, joueurs, ligues et lieux depuis un tableau de bord unifié.
 * Shortcodes responsive (calendrier, effectif, carte joueur, formulaire) et UI front modernisée.
 * Intégration WooCommerce pour relier vos événements/saisons à des produits.
 * Internationalisation native (FR/EN/ES) compatible WPML/Polylang, SEO-friendly et adaptée aux thèmes modernes (Gutenberg, Astra…).
+* Sélection automatique des lieux « approuvés » lors de la création d’un événement (notice si aucun n’est disponible).
 
 == Features ==
 * **Calendrier d’événements** : planifiez rencontres, entraînements et stages avec lieu, scores, RSVP et rappels.
@@ -84,6 +86,12 @@ Oui. Club Easy Event charge les traductions FR/EN/ES et fonctionne avec WPML/Pol
 Associez une saison ou un événement à un produit WooCommerce pour vendre des abonnements ou billets. L’intégration reste optionnelle.
 
 == Changelog ==
+= 1.3.0 =
+* Tableau de bord admin synthétique avec cartes KPI, prochains événements, validations en attente, actions rapides et historiques.
+* Sélecteur de lieu filtré sur les contenus approuvés + notice de création rapide lorsque la liste est vide.
+* Mise à jour des capacités du rôle `team_manager` (édition/suppression des équipes publiées, privées et approuvées).
+* Traductions FR/EN/ES, documentation et fichiers `.pot/.po` synchronisés.
+
 = 1.2.0 =
 * Workflow d’approbation complet (états, filtres, actions groupées, badges et notes).
 * Méta-box événement modernisée avec validations et regroupement des champs.
@@ -107,5 +115,5 @@ Associez une saison ou un événement à un produit WooCommerce pour vendre des 
 * Première version publique.
 
 == Upgrade Notice ==
-= 1.2.0 =
-Ajoute le workflow d’approbation, les notifications d’événement, l’assignation joueurs ↔ équipes et le formulaire `[cee_player_signup]`. Mettez à jour pour bénéficier de la nouvelle expérience front et des automatismes.
+= 1.3.0 =
+Nouveau tableau de bord administrateur, sélecteur de lieux approuvés et renforcement des capacités `team_manager`. Mettez à jour pour garder une interface fluide et sécurisée.

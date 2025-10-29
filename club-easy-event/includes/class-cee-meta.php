@@ -70,7 +70,9 @@ class CEE_Meta {
 		$home_score      = get_post_meta( $post->ID, '_cee_home_score', true );
 		$away_score      = get_post_meta( $post->ID, '_cee_away_score', true );
                 $teams           = $this->get_posts_for_select( 'cee_team' );
-                $venues          = $this->get_posts_for_select( 'cee_venue' );
+                $venues_data     = $this->get_event_venues_for_select();
+                $venues          = $venues_data['venues'];
+                $venues_notice   = $venues_data['show_notice'];
                 $event_types     = self::get_event_types();
                 $event_type_key  = self::get_event_type_key( $event_type );
                 $validation_messages = $this->get_event_validation_messages( $post->ID );
@@ -591,15 +593,60 @@ class CEE_Meta {
 	 *
 	 * @return array
 	 */
-	private function get_posts_for_select( $post_type ) {
-		$args  = array(
-			'post_type'      => $post_type,
-			'posts_per_page' => 200,
+	/**
+	 * Retrieve approved venues for event dropdown.
+	 *
+	 * @return array
+	 */
+	private function get_event_venues_for_select() {
+		$defaults = array(
+			'post_type'      => 'cee_venue',
 			'post_status'    => 'publish',
+			'posts_per_page' => -1,
 			'orderby'        => 'title',
 			'order'          => 'ASC',
+			'suppress_filters' => false,
 			'fields'         => 'ids',
+			'no_found_rows'  => true,
+			'meta_query'     => array(
+				array(
+					'key'     => '_cee_approval_state',
+					'value'   => 'approved',
+					'compare' => '=',
+				),
+			),
 		);
+
+		/**
+		 * Filter the venue dropdown query arguments.
+		 *
+		 * @param array $defaults Default query arguments.
+		 */
+		$args   = apply_filters( 'cee_venue_dropdown_query_args', $defaults );
+		$venues = $this->query_ids_to_titles( $args );
+
+		if ( empty( $venues ) ) {
+			$fallback_args = $args;
+			unset( $fallback_args['meta_query'] );
+			$fallback_args['posts_per_page'] = -1;
+			$fallback_args['no_found_rows']  = true;
+			$venues                          = $this->query_ids_to_titles( $fallback_args );
+		}
+
+		return array(
+			'venues'      => $venues,
+			'show_notice' => empty( $venues ),
+		);
+	}
+
+	/**
+	 * Convert query results to ID => title pairs.
+	 *
+	 * @param array $args Query arguments.
+	 *
+	 * @return array
+	 */
+	private function query_ids_to_titles( $args ) {
 		$query = new WP_Query( $args );
 		$data  = array();
 
@@ -608,6 +655,26 @@ class CEE_Meta {
 		}
 
 		return $data;
+	}
+
+        /**
+         * Retrieve posts for select dropdowns.
+         *
+         * @param string $post_type Post type.
+         *
+         * @return array
+         */
+        private function get_posts_for_select( $post_type ) {
+                $args  = array(
+                        'post_type'      => $post_type,
+                        'posts_per_page' => 200,
+                        'post_status'    => 'publish',
+			'orderby'        => 'title',
+			'order'          => 'ASC',
+			'fields'         => 'ids',
+			'no_found_rows'  => true,
+		);
+		return $this->query_ids_to_titles( $args );
 	}
 
 	/**

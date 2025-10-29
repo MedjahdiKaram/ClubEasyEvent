@@ -10,6 +10,15 @@
 - **Club Easy Event → Gestion des rôles** : écran réservé aux administrateurs pour attribuer ou retirer les rôles WordPress et `team_manager`.
 - **Club Easy Event → Paramètres** : réglages couleurs, rappels e-mail, WooCommerce, notifications et inscription joueurs.
 
+## Tableau de bord du plugin
+- Accessible via le menu parent « Club Easy Event » pour les administrateurs et les `team_manager`.
+- Les indicateurs principaux affichent le nombre d’équipes, de joueurs, d’événements prévus sur les 7 prochains jours et d’événements en attente d’approbation.
+- Une liste des prochains événements synthétise date/heure, adversaires, lieu et état d’approbation (badges identiques aux colonnes d’administration).
+- Le bloc **À valider** met en avant les contenus en attente si l’utilisateur possède la capacité `cee_approve_content` (lien direct vers la vue filtrée).
+- Les **Actions rapides** proposent des boutons ouvrant dans un nouvel onglet la création d’une équipe, d’un joueur, d’un lieu ou d’un événement.
+- La section **Dernières modifications** permet de suivre les changements récents (statut et date de modification).
+- Chaque panneau est repliable (bouton « Basculer la section ») pour simplifier la lecture sur mobile.
+
 ## Workflow de vérification & approbation
 - Une méta-box « Vérification & approbation » est disponible sur les contenus `cee_event`, `cee_team`, `cee_player` et `cee_venue`.
 - Les états disponibles sont : **Brouillon**, **En attente**, **Approuvé** et **Rejeté**. Les transitions sont protégées par des capacités (`cee_mark_pending`, `cee_approve_content`, `cee_reject_content`).
@@ -22,6 +31,7 @@
 - Les validations administratives vérifient les règles métiers : équipe à domicile obligatoire pour les matchs/entraînements, lieu recommandé, impossibilité de sélectionner à la fois une équipe interne et un libellé externe pour l’adversaire.
 - Les avertissements sont affichés sous les champs concernés et récapitulés dans un bloc « Points à vérifier » après enregistrement.
 - Les aides contextuelles rappellent les formats attendus (date ISO, horaire 24h) et l’impact du type d’événement.
+- Le champ **Lieu** liste uniquement les contenus `cee_venue` approuvés et publiés. Si aucun n’est disponible, une notice propose de créer un lieu (lien nouvel onglet) sans bloquer l’enregistrement.
 
 ## Assignation joueurs ↔ équipes
 - Sur une fiche équipe, la méta-box « Joueurs de l’équipe » propose une liste filtrable et des cases à cocher pour associer rapidement plusieurs joueurs.
